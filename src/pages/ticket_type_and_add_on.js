@@ -17,12 +17,16 @@ export default function TicketTypeAndAddOn() {
   }
 
   function nextPage() {
-    router.push(bookingDetails.oneTentForEach ? `/index` : `/tent_selection`);
+    router.push(bookingDetails.oneTentForEach ? `/contact_information` : `/tent_selection`);
   }
 
   useEffect(() => {
     updateTwoPersonTentNum();
   }, []);
+
+  useEffect(() => {
+    updateBookingDetails();
+  }, [twoPersonTentNum]);
 
   function updateTwoPersonTentNum() {
     bookingDetails.oneTentForEach ? setTwoPersonTentNum(bookingDetails.ticketAmount) : setTwoPersonTentNum(0);
