@@ -170,21 +170,36 @@ function Contact(props) {
   return (
     <>
       {[...Array(bookingDetails.ticketAmount)].map((_, index) => (
-        <ContactForm bookingDetails={bookingDetails} updateBookingDetails={updateBookingDetails} numOfTickets={index + 1} key={index} fromIndex={index} isExpanded={index === currentAccordionIndex} onNextTicket={handleNextTicket} handleSubmit={handleSubmit} onClickAccordion={() => setCurrentAccordionIndex(index)} />
+        <ContactForm
+          bookingDetails={bookingDetails}
+          updateBookingDetails={updateBookingDetails}
+          numOfTickets={index + 1}
+          key={index}
+          fromIndex={index}
+          isExpanded={index === currentAccordionIndex}
+          onNextTicket={handleNextTicket}
+          handleSubmit={handleSubmit}
+          onClickAccordion={() => setCurrentAccordionIndex(index)}
+        />
       ))}
       {bookingDetails.ticketAmount === formArray.length ? (
         <div className="mt-10 flex justify-center">
-          <Button onClick={updateBooking
-            Details} className="
-             mb-10 
-             h-10 gap-5 place-s
-             elf-center rounded-none border-2 border-solid border-color-yellow px-6 font-sans font-semibold text-color-yellow hover:bg-color-yellow hover:text-color-black ">
+          <Button
+            onClick={updateBookingDetails}
+            className="
+             place-s 
+             elf-center mb-10 h-10
+             gap-5 rounded-none border-2 border-solid border-color-yellow px-6 font-sans font-semibold text-color-yellow hover:bg-color-yellow hover:text-color-black "
+          >
             <span className="pt-1">Go to payment</span>
           </Button>
         </div>
       ) : (
         <div className="mt-10 flex justify-center">
-          <Button disabled={true} className=" mb-10 h-10 gap-5 place-self-center rounded-none border-2 border-solid border-color-gray bg-color-gray px-6 font-sans font-semibold text-color-black hover:bg-color-yellow hover:text-color-black ">
+          <Button
+            disabled={true}
+            className=" mb-10 h-10 gap-5 place-self-center rounded-none border-2 border-solid border-color-gray bg-color-gray px-6 font-sans font-semibold text-color-black hover:bg-color-yellow hover:text-color-black "
+          >
             <span className="pt-1">Go to payment</span>
           </Button>
         </div>
@@ -217,83 +232,106 @@ function ContactForm(props) {
   const inputValueZip = zipCode.length;
 
   return (
-    <form className="mb-2" onSubmit={props.handleSubmit}>
-      <Accordion className=" bg-color-white" expanded={props.isExpanded}>
-        <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1d-content" id="panel1d-header" onClick={props.onClickAccordion}>
+    <form
+      className="mb-2"
+      onSubmit={props.handleSubmit}
+    >
+      <Accordion
+        className=" bg-color-white"
+        expanded={props.isExpanded}
+      >
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1d-content"
+          id="panel1d-header"
+          onClick={props.onClickAccordion}
+        >
           <Typography className="text-color-black">Ticket #{props.numOfTickets} </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <ValidationTextField inputProps={{ inputMode: "text" }} 
-          fullWidth 
-          type="text" 
-          label="First name" 
-          required 
-          variant="outlined" 
-          defaultValue="" 
-          id="validation-outlined-input" 
-          name="firstName" />
-          <ValidationTextField inputProps={{ inputMode: "text" }} 
-          fullWidth 
-          className="mt-4" 
-          type="text" 
-          label="Last name" 
-          required 
-          variant="outlined" 
-          defaultValue="" 
-          id="validation-outlined-input" 
-          name="lastName" />
-          <ValidationTextFieldPhone 
-          inputProps={{ inputMode: "tel" }} 
-          className="mt-4" 
-          onChange={handleChange} 
-          id="formatted-text-mask-input" 
-          InputProps={{ inputComponent: TextMaskCustom }} 
-          fullWidth 
-          label="Phone number" 
-          required 
-          variant="outlined" 
-          value={values.phoneNumber} 
-          inputValue={inputValue} 
-          name="phoneNumber" />
-          <ValidationTextField 
-          inputProps={{ inputMode: "email" }} 
-          type="email" 
-          fullWidth 
-          className="mt-4" 
-          label="Email" 
-          required 
-          variant="outlined" 
-          defaultValue="" 
-          id="validation-outlined-input" 
-          name="email" />
-          <ValidationTextField 
-          inputProps={{ inputMode: "text" }} 
-          fullWidth
-           className="mt-4" 
-           type="text" 
-           label="Street and house number" 
-           required 
-           variant="outlined" 
-           defaultValue="" 
-           id="validation-outlined-input" 
-           name="streetAdress" />
-          <ValidationTextFieldZip 
-          inputProps={{ inputMode: "decimal" }} 
-          type="number" 
-          fullWidth 
-          className="mt-4" 
-          label="Zip code" 
-          required 
-          variant="outlined" 
-          value={zipCode} 
-          defaultValue="" 
-          id="validation-outlined-input" 
-          onChange={handleChangeZip} 
-          inputValueZip={inputValueZip} 
-          name="zipCode" />
+          <ValidationTextField
+            inputProps={{ inputMode: "text" }}
+            fullWidth
+            type="text"
+            label="First name"
+            required
+            variant="outlined"
+            defaultValue=""
+            id="validation-outlined-input"
+            name="firstName"
+          />
+          <ValidationTextField
+            inputProps={{ inputMode: "text" }}
+            fullWidth
+            className="mt-4"
+            type="text"
+            label="Last name"
+            required
+            variant="outlined"
+            defaultValue=""
+            id="validation-outlined-input"
+            name="lastName"
+          />
+          <ValidationTextFieldPhone
+            inputProps={{ inputMode: "tel" }}
+            className="mt-4"
+            onChange={handleChange}
+            id="formatted-text-mask-input"
+            InputProps={{ inputComponent: TextMaskCustom }}
+            fullWidth
+            label="Phone number"
+            required
+            variant="outlined"
+            value={values.phoneNumber}
+            inputValue={inputValue}
+            name="phoneNumber"
+          />
+          <ValidationTextField
+            inputProps={{ inputMode: "email" }}
+            type="email"
+            fullWidth
+            className="mt-4"
+            label="Email"
+            required
+            variant="outlined"
+            defaultValue=""
+            id="validation-outlined-input"
+            name="email"
+          />
+          <ValidationTextField
+            inputProps={{ inputMode: "text" }}
+            fullWidth
+            className="mt-4"
+            type="text"
+            label="Street and house number"
+            required
+            variant="outlined"
+            defaultValue=""
+            id="validation-outlined-input"
+            name="streetAdress"
+          />
+          <ValidationTextFieldZip
+            inputProps={{ inputMode: "decimal" }}
+            type="number"
+            fullWidth
+            className="mt-4"
+            label="Zip code"
+            required
+            variant="outlined"
+            value={zipCode}
+            defaultValue=""
+            id="validation-outlined-input"
+            onChange={handleChangeZip}
+            inputValueZip={inputValueZip}
+            name="zipCode"
+          />
         </AccordionDetails>
         <div className="mt-10 flex justify-center">
-          <Button type="submit" onClick={() => props.updateBookingDetails} className=" mb-10 h-10 gap-5 place-self-center rounded-none border-2 border-solid border-color-black px-6 font-sans font-semibold text-color-black hover:bg-color-black hover:text-color-yellow ">
+          <Button
+            type="submit"
+            onClick={() => props.updateBookingDetails}
+            className=" mb-10 h-10 gap-5 place-self-center rounded-none border-2 border-solid border-color-black px-6 font-sans font-semibold text-color-black hover:bg-color-black hover:text-color-yellow "
+          >
             <span className="pt-1">Next ticket</span>
           </Button>
         </div>
