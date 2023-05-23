@@ -166,7 +166,7 @@ function Contact(props) {
 function ContactForm(props) {
   const [zipCode, setZipCode] = useState("");
   const [values, setValues] = React.useState({
-    textmask: "",
+    phoneNumber: "",
   });
 
   const handleChange = (event) => {
@@ -185,7 +185,7 @@ function ContactForm(props) {
     // console.log(event.target.value.length);
   };
 
-  const inputValue = values.textmask.length;
+  const inputValue = values.phoneNumber.length;
   const inputValueZip = zipCode.length;
 
   return (
@@ -196,7 +196,7 @@ function ContactForm(props) {
       <AccordionDetails>
         <ValidationTextField fullWidth type="text" label="First name" required variant="outlined" defaultValue="" id="validation-outlined-input" name="firstName"/>
         <ValidationTextField fullWidth className="mt-4" type="text" label="Last name" required variant="outlined" defaultValue="" id="validation-outlined-input" name="lastName"/>
-        <ValidationTextFieldPhone className="mt-4" onChange={handleChange}  id="formatted-text-mask-input" InputProps={{ inputComponent: TextMaskCustom }} fullWidth label="Phone number" required variant="outlined" value={values.textmask} inputValue={inputValue} name="phoneNumber"/>
+        <ValidationTextFieldPhone className="mt-4" onChange={handleChange}  id="formatted-text-mask-input" InputProps={{ inputComponent: TextMaskCustom }} fullWidth label="Phone number" required variant="outlined" value={values.phoneNumber} inputValue={inputValue} name="phoneNumber"/>
         <ValidationTextField type="email" fullWidth className="mt-4" label="Email" required variant="outlined" defaultValue="" id="validation-outlined-input" name="email"/>
         <ValidationTextField fullWidth className="mt-4" type="text" label="Street and house number" required variant="outlined" defaultValue="" id="validation-outlined-input" name="streetAdress"/>
         <ValidationTextFieldZip type="number" fullWidth className="mt-4" label="Zip code" required variant="outlined" value={zipCode} defaultValue="" id="validation-outlined-input" onChange={handleChangeZip} inputValueZip={inputValueZip} name="zipCode"/>
