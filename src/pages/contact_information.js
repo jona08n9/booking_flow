@@ -123,21 +123,39 @@ const NumericFormatCustom = React.forwardRef(function NumericFormatCustom(props,
   );
 });
 
-function Contact() {
+function Contact(props) {
   const [bookingDetails, setBookingDetails] = useContext(BookingInformation)
   const [currentAccordionIndex, setCurrentAccordionIndex] = useState(0);
+  const [formValues, setFormValues] = useState([]);
 
   const handleNextTicket = () => {
     setCurrentAccordionIndex(currentAccordionIndex + 1);
   };
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const formData = {
+      firstName: event.target.firstName.value,
+      lastName: event.target.lastName.value,
+      phoneNumber: event.target.phoneNumber.value,
+      email: event.target.email.value,
+      streetAdress: event.target.streetAdress.value,
+      zipCode: event.target.zipCode.value,
+    };
+    console.log("Form Data:", JSON.stringify(formData));
+    console.log(formData); // Log the stringified form data
+
+    // event.target.reset()
+  }
+
   return (
     <>
-      <form>
+      <form onSubmit={handleSubmit}>
         {[...Array(bookingDetails.ticketAmount)].map((_, index) => (
-          <ContactForm numOfTickets={index + 1} key={index} isExpanded={index === currentAccordionIndex} onNextTicket={handleNextTicket} onClickAccordion={() => setCurrentAccordionIndex(index)} />
+          <ContactForm numOfTickets={index + 1} key={index} fromIndex={index} isExpanded={index === currentAccordionIndex} onNextTicket={handleNextTicket} onClickAccordion={() => setCurrentAccordionIndex(index)} onSubmit={(formData, formIndex) => handleSubmit(formData, formIndex)} />
         ))}
-        <Button className=" rounded-none border-2 border-solid place-self-center border-color-yellow h-10 mb-10 px-6 text-color-yellow hover:bg-color-yellow hover:text-color-black font-sans font-semibold gap-5 ">
+        <Button  type="submit" 
+ className=" rounded-none border-2 border-solid place-self-center border-color-yellow h-10 mb-10 px-6 text-color-yellow hover:bg-color-yellow hover:text-color-black font-sans font-semibold gap-5 ">
           <span className="pt-1">Go to payment</span>
         </Button>
       </form>
@@ -158,6 +176,8 @@ function ContactForm(props) {
     });
   };
 
+
+ 
   const handleChangeZip = (event) => {
     const limit = 4;
 
@@ -174,12 +194,12 @@ function ContactForm(props) {
         <Typography className="text-color-black">Ticket #{props.numOfTickets} </Typography>
       </AccordionSummary>
       <AccordionDetails>
-        <ValidationTextField fullWidth type="text" label="First name" required variant="outlined" defaultValue="" id="validation-outlined-input" />
-        <ValidationTextField fullWidth className="mt-4" type="text" label="Last name" required variant="outlined" defaultValue="" id="validation-outlined-input" />
-        <ValidationTextFieldPhone className="mt-4" onChange={handleChange} name="textmask" id="formatted-text-mask-input" InputProps={{ inputComponent: TextMaskCustom }} fullWidth label="Phone number" required variant="outlined" value={values.textmask} inputValue={inputValue} />
-        <ValidationTextField type="email" fullWidth className="mt-4" label="Email" required variant="outlined" defaultValue="" id="validation-outlined-input" />
-        <ValidationTextField fullWidth className="mt-4" type="text" label="Street and house number" required variant="outlined" defaultValue="" id="validation-outlined-input" />
-        <ValidationTextFieldZip type="number" fullWidth className="mt-4" label="Zip code" required variant="outlined" value={zipCode} defaultValue="" id="validation-outlined-input" onChange={handleChangeZip} inputValueZip={inputValueZip} />
+        <ValidationTextField fullWidth type="text" label="First name" required variant="outlined" defaultValue="" id="validation-outlined-input" name="firstName"/>
+        <ValidationTextField fullWidth className="mt-4" type="text" label="Last name" required variant="outlined" defaultValue="" id="validation-outlined-input" name="lastName"/>
+        <ValidationTextFieldPhone className="mt-4" onChange={handleChange}  id="formatted-text-mask-input" InputProps={{ inputComponent: TextMaskCustom }} fullWidth label="Phone number" required variant="outlined" value={values.textmask} inputValue={inputValue} name="phoneNumber"/>
+        <ValidationTextField type="email" fullWidth className="mt-4" label="Email" required variant="outlined" defaultValue="" id="validation-outlined-input" name="email"/>
+        <ValidationTextField fullWidth className="mt-4" type="text" label="Street and house number" required variant="outlined" defaultValue="" id="validation-outlined-input" name="streetAdress"/>
+        <ValidationTextFieldZip type="number" fullWidth className="mt-4" label="Zip code" required variant="outlined" value={zipCode} defaultValue="" id="validation-outlined-input" onChange={handleChangeZip} inputValueZip={inputValueZip} name="zipCode"/>
       </AccordionDetails>
       <Button className=" rounded-none border-2 border-solid place-self-center border-color-black h-10 mb-10 px-6 text-color-black hover:bg-color-black hover:text-color-yellow font-sans font-semibold gap-5 " onClick={props.onNextTicket}>
         <span className="pt-1">Next ticket</span>
