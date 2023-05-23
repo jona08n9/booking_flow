@@ -126,7 +126,7 @@ const NumericFormatCustom = React.forwardRef(function NumericFormatCustom(props,
 function Contact(props) {
   const [bookingDetails, setBookingDetails] = useContext(BookingInformation)
   const [currentAccordionIndex, setCurrentAccordionIndex] = useState(0);
-  const [formValues, setFormValues] = useState([]);
+  
 
   const handleNextTicket = () => {
     setCurrentAccordionIndex(currentAccordionIndex + 1);
