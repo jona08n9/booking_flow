@@ -10,6 +10,7 @@ import { IMaskInput } from "react-imask";
 import { NumericFormat } from "react-number-format";
 import { BookingInformation } from "./_app";
 import { useContext } from "react";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 const ValidationTextFieldPhone = styled(TextField)(({ inputValue }) => ({
   "& label.Mui-focused": {
@@ -212,9 +213,9 @@ function ContactForm(props) {
   const inputValueZip = zipCode.length;
 
   return (
-    <form onSubmit={props.handleSubmit}>
-      <Accordion className="bg-color-white " expanded={props.isExpanded}>
-        <AccordionSummary aria-controls="panel1d-content" id="panel1d-header" onClick={props.onClickAccordion}>
+    <form className="mb-2" onSubmit={props.handleSubmit}>
+      <Accordion className=" bg-color-white" expanded={props.isExpanded}>
+        <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1d-content" id="panel1d-header" onClick={props.onClickAccordion}>
           <Typography className="text-color-black">Ticket #{props.numOfTickets} </Typography>
         </AccordionSummary>
         <AccordionDetails>
@@ -225,7 +226,6 @@ function ContactForm(props) {
           <ValidationTextField fullWidth className="mt-4" type="text" label="Street and house number" required variant="outlined" defaultValue="" id="validation-outlined-input" name="streetAdress" />
           <ValidationTextFieldZip type="number" fullWidth className="mt-4" label="Zip code" required variant="outlined" value={zipCode} defaultValue="" id="validation-outlined-input" onChange={handleChangeZip} inputValueZip={inputValueZip} name="zipCode" />
         </AccordionDetails>
-
         <div className="mt-10 flex justify-center">
           <Button type="submit" onClick={() => props.updateBookingDetails} className=" mb-10 h-10 gap-5 place-self-center rounded-none border-2 border-solid border-color-black px-6 font-sans font-semibold text-color-black hover:bg-color-black hover:text-color-yellow ">
             <span className="pt-1">Next ticket</span>
