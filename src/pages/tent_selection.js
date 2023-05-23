@@ -8,8 +8,13 @@ import Fade from "@mui/material/Fade";
 import Typography from "@mui/material/Typography";
 import Backdrop from "@mui/material/Backdrop";
 import { Button } from "@mui/material";
+import Router, { useRouter } from "next/router";
+
+
+
 
 export default function TentSelection() {
+  const router = useRouter()
   // set default state
 
   const [twoPersonTentNum, setTwoPersonTentNum] = useState(0);
@@ -73,6 +78,10 @@ export default function TentSelection() {
         "3personTentPrivat": threePersonTentPrivatNum,
       },
     }));
+  }
+
+  function nextPage() {
+    router.push(bookingDetails.oneTentForEach ? `/contact_information` : `/contact_information`);
   }
 
   // styling for modal
@@ -180,6 +189,14 @@ export default function TentSelection() {
               />
             </div>
           </article>
+        </div>
+        <div className="mt-10 flex justify-center">
+          <Button
+            className=" mb-10 h-10 gap-5 place-self-center rounded-none border-2 border-solid border-color-yellow px-6 font-sans font-semibold text-color-yellow hover:bg-color-yellow hover:text-color-black "
+            onClick={nextPage}
+          >
+            <span className="pt-1">Next step</span> <span className="material-symbols-outlined">arrow_forward</span>
+          </Button>
         </div>
 
         {/* --------- these buttons is for testing  -------------- */}

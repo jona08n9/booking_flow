@@ -8,6 +8,8 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { IMaskInput } from "react-imask";
 import { NumericFormat } from "react-number-format";
+import { BookingInformation } from "./_app";
+import { useContext } from "react";
 
 const ValidationTextFieldPhone = styled(TextField)(({ inputValue }) => ({
   "& label.Mui-focused": {
@@ -122,6 +124,7 @@ const NumericFormatCustom = React.forwardRef(function NumericFormatCustom(props,
 });
 
 function Contact() {
+  const [bookingDetails, setBookingDetails] = useContext(BookingInformation)
   const [currentAccordionIndex, setCurrentAccordionIndex] = useState(0);
 
   const handleNextTicket = () => {
@@ -131,7 +134,7 @@ function Contact() {
   return (
     <>
       <form>
-        {[...Array(5)].map((_, index) => (
+        {[...Array(bookingDetails.ticketAmount)].map((_, index) => (
           <ContactForm numOfTickets={index + 1} key={index} isExpanded={index === currentAccordionIndex} onNextTicket={handleNextTicket} onClickAccordion={() => setCurrentAccordionIndex(index)} />
         ))}
         <Button className=" rounded-none border-2 border-solid place-self-center border-color-yellow h-10 mb-10 px-6 text-color-yellow hover:bg-color-yellow hover:text-color-black font-sans font-semibold gap-5 ">
