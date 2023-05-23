@@ -9,12 +9,10 @@ import Typography from "@mui/material/Typography";
 import Backdrop from "@mui/material/Backdrop";
 import { Button } from "@mui/material";
 import Router, { useRouter } from "next/router";
-
-
-
+import Drawer from "@/components/Drawer";
 
 export default function TentSelection() {
-  const router = useRouter()
+  const router = useRouter();
   // set default state
 
   const [twoPersonTentNum, setTwoPersonTentNum] = useState(0);
@@ -200,7 +198,7 @@ export default function TentSelection() {
         </div>
 
         {/* --------- these buttons is for testing  -------------- */}
-        {/* <button
+        <button
           className="m-5 bg-color-white p-5"
           onClick={() => {
             console.log(`This is bookingDetails: `, bookingDetails);
@@ -208,7 +206,7 @@ export default function TentSelection() {
         >
           Log bookingDetails
         </button>
-
+        {/*
         <button
           className="m-5 bg-color-white p-5"
           onClick={() => {
@@ -220,6 +218,9 @@ export default function TentSelection() {
 
         <button onClick={() => console.log(spotsLeft)}> se spotsleft</button> */}
       </section>
+      <div className={`fixed bottom-0 left-0 right-0 `}>
+        <Drawer />
+      </div>
     </>
   );
 }

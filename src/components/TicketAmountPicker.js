@@ -12,6 +12,7 @@ export function TicketAmountPicker(props) {
   const [ticketAmount, setTicketAmount] = useState(1);
   const [oneTentForEach, setOneTentForEach] = useState(false);
   const [twoPersonTentNum, setTwoPersonTentNum] = useState(0);
+
   const [numberOfTickets, setNumberOfTickets] = useState(0);
 
   /* makes sure that bookingDetails is updated everytime either  "ticketAmount" or "oneTentForEach" changes */
@@ -31,6 +32,8 @@ export function TicketAmountPicker(props) {
       ticketAmount: ticketAmount,
       oneTentForEach: oneTentForEach,
       tents: { "2personTent": twoPersonTentNum },
+      ticketType: "regular",
+      greenCamp: false,
     }));
   }
 

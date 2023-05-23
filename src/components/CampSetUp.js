@@ -26,7 +26,7 @@ export function CampSetUp() {
 
   return (
     <>
-      <div className="flex justify-around m-10">
+      <div className="m-10 flex justify-around">
         <FormGroup className="flex items-center">
           <FormControlLabel
             control={
@@ -49,8 +49,8 @@ export function CampSetUp() {
                 }}
               />
             }
-            label={<Typography style={{ fontFamily: "var(--font-josefin" }}>Want us to set up your camp?</Typography>}
-            className="flex items-center text-color-white font-sans pt-5"
+            label={<Typography style={{ fontFamily: "var(--font-josefin" }}>Want us to set up your camp? 399,-</Typography>}
+            className="flex items-center pt-5 font-sans text-color-white"
           />
         </FormGroup>
       </div>

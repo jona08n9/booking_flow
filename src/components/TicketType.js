@@ -1,16 +1,22 @@
 import Radio from "@mui/material/Radio";
+import { BookingInformation } from "@/pages/_app";
+import { useContext } from "react";
 
 export function TicketType(props) {
+  const price = props.radioValue === "regular" ? 799 : 1299;
+  const [bookingDetails, setBookingDetails] = useContext(BookingInformation);
   return (
     <>
       <article
-        className="flex flex-col bg-gradient-to-b from-color-opacity-20 to-color-opacity-10 m-2.5 pl-2 pr-3 py-4 bg-color-back cursor-pointer h-32 w-42 rounded-sm"
+        className={`w-42 m-1 flex h-32 cursor-pointer flex-col self-center rounded-sm bg-color-black bg-gradient-to-b from-color-opacity-20 to-color-opacity-10 py-4 pl-2 pr-3 text-lg duration-500  ${
+          props.radioValue === bookingDetails.ticketType ? "bg-gradient-to-b from-color-teal to-color-purple" : ""
+        }`}
         onClick={() => props.pickTicketType(props.radioValue)} /* makes the card clickable and calls 
         "pickTicketType" from parent component */
       >
-        <div className="flex justify-between mr-0">
+        <div className="mr-0 flex justify-between">
           {/* This is the heading of the card */}
-          <h3 className={` text-lg self-center duration-200 `}>{`${props.ticketType}`}</h3>
+          <h3 className={` self-center text-lg duration-200 `}>{`${props.ticketType}`}</h3>
 
           <Radio
             checked={props.selectedValue === props.radioValue}
@@ -33,9 +39,12 @@ export function TicketType(props) {
             }}
           />
         </div>
-        <div className="flex justify-between mt-auto  ">
+        <div className="mt-auto flex justify-between gap-3 ">
           {/* This is the explainer text for the card */}
-          <p className={`self-center duration-200 `}>{`${props.typeAddOns}`}</p>
+          <p className={` self-center text-sm duration-200 `}>{`${props.typeAddOns}`}</p>
+          <div className="font-sans ">
+            <span className={"text-lg font-bold text-color-yellow"}>{price},-</span>
+          </div>
         </div>
       </article>
     </>

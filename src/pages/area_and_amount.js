@@ -5,6 +5,7 @@ import { ChooseArea } from "../components/ChooseArea";
 import Button from "@mui/material/Button";
 import { useRouter } from "next/router";
 import "material-symbols";
+import Drawer from "@/components/Drawer";
 
 export default function AreaAndAmount() {
   // States
@@ -31,6 +32,7 @@ export default function AreaAndAmount() {
     setBookingDetails((prev) => ({
       ...prev,
       reservation_id,
+      tents: { "2personTent": 0, "3personTent": 0, "2personTentPrivat": 0, "3personTentPrivat": 0 },
     }));
   }
 
@@ -67,6 +69,10 @@ export default function AreaAndAmount() {
         >
           <span className="pt-1">Next step</span> <span className="material-symbols-outlined">arrow_forward</span>
         </Button>
+      </div>
+
+      <div className={`fixed bottom-0 left-0 right-0 `}>
+        <Drawer />
       </div>
     </main>
   );

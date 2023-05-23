@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import { TicketTypes } from "../components/TicketTypes";
 import { CampAddOns } from "@/components/CampAddOns";
 import "material-symbols";
+import Drawer from "@/components/Drawer";
 
 export default function TicketTypeAndAddOn() {
   const [bookingDetails, setBookingDetails] = useContext(BookingInformation);
@@ -36,7 +37,7 @@ export default function TicketTypeAndAddOn() {
   function updateBookingDetails() {
     setBookingDetails((prev) => ({
       ...prev,
-      tents: { "2personTent": twoPersonTentNum },
+      tents: { "2personTent": twoPersonTentNum, "3personTent": 0, "2personTentPrivat": 0, "3personTentPrivat": 0 },
     }));
   }
   return (
@@ -63,6 +64,10 @@ export default function TicketTypeAndAddOn() {
           >
             <span className="pt-1">Next step</span> <span className="material-symbols-outlined">arrow_forward</span>
           </Button>
+        </div>
+
+        <div className={`fixed bottom-0 left-0 right-0 `}>
+          <Drawer />
         </div>
       </main>
     </>
