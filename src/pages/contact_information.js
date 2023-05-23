@@ -126,12 +126,14 @@ const NumericFormatCustom = React.forwardRef(function NumericFormatCustom(props,
 function Contact(props) {
   const [bookingDetails, setBookingDetails] = useContext(BookingInformation)
   const [currentAccordionIndex, setCurrentAccordionIndex] = useState(0);
+  const [formArray, setFormArray ]= useState([]);
   
 
   const handleNextTicket = () => {
     setCurrentAccordionIndex(currentAccordionIndex + 1);
+    console.log(formArray)
   };
-
+  
   const handleSubmit = (event) => {
     event.preventDefault();
     const formData = {
@@ -142,23 +144,30 @@ function Contact(props) {
       streetAdress: event.target.streetAdress.value,
       zipCode: event.target.zipCode.value,
     };
+    
+    setFormArray((prevFormArray) => [...prevFormArray, formData]);
+    handleNextTicket();
     console.log("Form Data:", JSON.stringify(formData));
     console.log(formData); // Log the stringified form data
-
+console.log(formArray.length)
     // event.target.reset()
   }
 
+  useEffect(() => {
+    console.log(formArray);
+  }, [formArray]);
+
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      
         {[...Array(bookingDetails.ticketAmount)].map((_, index) => (
-          <ContactForm numOfTickets={index + 1} key={index} fromIndex={index} isExpanded={index === currentAccordionIndex} onNextTicket={handleNextTicket} onClickAccordion={() => setCurrentAccordionIndex(index)} onSubmit={(formData, formIndex) => handleSubmit(formData, formIndex)} />
+          <ContactForm numOfTickets={index + 1} key={index} fromIndex={index} isExpanded={index === currentAccordionIndex} onNextTicket={handleNextTicket} handleSubmit={handleSubmit} onClickAccordion={() => setCurrentAccordionIndex(index)} onSubmit={(formData, formIndex) => handleSubmit(formData, formIndex)} />
         ))}
         <Button  type="submit" 
- className=" rounded-none border-2 border-solid place-self-center border-color-yellow h-10 mb-10 px-6 text-color-yellow hover:bg-color-yellow hover:text-color-black font-sans font-semibold gap-5 ">
+           className=" rounded-none border-2 border-solid place-self-center border-color-yellow h-10 mb-10 px-6 text-color-yellow hover:bg-color-yellow hover:text-color-black font-sans font-semibold gap-5 ">
           <span className="pt-1">Go to payment</span>
         </Button>
-      </form>
+      
     </>
   );
 }
@@ -189,6 +198,7 @@ function ContactForm(props) {
   const inputValueZip = zipCode.length;
 
   return (
+      <form onSubmit={props.handleSubmit}>
     <Accordion className="bg-color-white " expanded={props.isExpanded}>
       <AccordionSummary aria-controls="panel1d-content" id="panel1d-header" onClick={props.onClickAccordion}>
         <Typography className="text-color-black">Ticket #{props.numOfTickets} </Typography>
@@ -201,10 +211,13 @@ function ContactForm(props) {
         <ValidationTextField fullWidth className="mt-4" type="text" label="Street and house number" required variant="outlined" defaultValue="" id="validation-outlined-input" name="streetAdress"/>
         <ValidationTextFieldZip type="number" fullWidth className="mt-4" label="Zip code" required variant="outlined" value={zipCode} defaultValue="" id="validation-outlined-input" onChange={handleChangeZip} inputValueZip={inputValueZip} name="zipCode"/>
       </AccordionDetails>
-      <Button className=" rounded-none border-2 border-solid place-self-center border-color-black h-10 mb-10 px-6 text-color-black hover:bg-color-black hover:text-color-yellow font-sans font-semibold gap-5 " onClick={props.onNextTicket}>
+
+      
+      <Button type="submit"   className=" rounded-none border-2 border-solid place-self-center border-color-black h-10 mb-10 px-6 text-color-black hover:bg-color-black hover:text-color-yellow font-sans font-semibold gap-5 " >
         <span className="pt-1">Next ticket</span>
       </Button>
     </Accordion>
+      </form>
   );
 }
 
