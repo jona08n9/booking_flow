@@ -50,9 +50,9 @@ export default function AreaAndAmount() {
       <ChooseArea />
 
       {/* button for testing, just logs bookingDetails */}
-      <div className=" grid place-content-center">
-        {/* Used to log the booking information to make sure the correct data is logged for the further flow */}
-        <button
+      {/* <div className=" grid place-content-center"> */}
+      {/* Used to log the booking information to make sure the correct data is logged for the further flow */}
+      {/* <button
           className="m-5 bg-color-white p-5"
           onClick={() => {
             console.log(`This is bookingDetails: `, bookingDetails);
@@ -60,8 +60,8 @@ export default function AreaAndAmount() {
         >
           Log bookingDetails
         </button>
-      </div>
-      <div className="mt-10 flex justify-center">
+      </div> */}
+      <div className=" mb-16 mt-10 flex justify-center">
         <Button
           className=" mb-10 h-10 gap-5 place-self-center rounded-none border-2 border-solid border-color-yellow px-6 font-sans font-semibold text-color-yellow hover:bg-color-yellow hover:text-color-black "
           onClick={reserveTickets}

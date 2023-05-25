@@ -109,7 +109,11 @@ export default function TentSelection() {
       >
         <Fade in={open}>
           <Box sx={style}>
-            <Typography id="transition-modal-title" variant="h6" component="h2">
+            <Typography
+              id="transition-modal-title"
+              variant="h6"
+              component="h2"
+            >
               You ran out of spots
             </Typography>
             <Typography
@@ -185,7 +189,7 @@ export default function TentSelection() {
             </div>
           </article>
         </div>
-        <div className="mt-10 flex justify-center">
+        <div className="mb-16 mt-10 flex justify-center">
           <Button
             className=" mb-10 h-10 gap-5 place-self-center rounded-none border-2 border-solid border-color-yellow px-6 font-sans font-semibold text-color-yellow hover:bg-color-yellow hover:text-color-black "
             onClick={nextPage}
@@ -195,14 +199,14 @@ export default function TentSelection() {
         </div>
 
         {/* --------- these buttons is for testing  -------------- */}
-        <button
+        {/* <button
           className="m-5 bg-color-white p-5"
           onClick={() => {
             console.log(`This is bookingDetails: `, bookingDetails);
           }}
         >
           Log bookingDetails
-        </button>
+        </button> */}
         {/*
         <button
           className="m-5 bg-color-white p-5"
@@ -215,7 +219,7 @@ export default function TentSelection() {
 
         <button onClick={() => console.log(spotsLeft)}> se spotsleft</button> */}
       </section>
-      <div className={`fixed bottom-0 left-0 right-0 `}>
+      <div className={`fixed bottom-0 left-0 right-0  `}>
         <Drawer />
       </div>
     </>
