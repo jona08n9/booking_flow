@@ -9,7 +9,7 @@ import Typography from "@mui/material/Typography";
 import Backdrop from "@mui/material/Backdrop";
 import { Button } from "@mui/material";
 import Router, { useRouter } from "next/router";
-import Drawer from "@/components/Drawer";
+import Drawer from "@/components/PriceDrawer";
 
 export default function TentSelection() {
   const router = useRouter();

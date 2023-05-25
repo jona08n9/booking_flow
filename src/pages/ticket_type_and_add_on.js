@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import { TicketTypes } from "../components/TicketTypes";
 import { CampAddOns } from "@/components/CampAddOns";
 import "material-symbols";
-import Drawer from "@/components/Drawer";
+import Drawer from "@/components/PriceDrawer";
 
 export default function TicketTypeAndAddOn() {
   const [bookingDetails, setBookingDetails] = useContext(BookingInformation);

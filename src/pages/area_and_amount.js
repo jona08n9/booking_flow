@@ -5,7 +5,7 @@ import { ChooseArea } from "../components/ChooseArea";
 import Button from "@mui/material/Button";
 import { useRouter } from "next/router";
 import "material-symbols";
-import Drawer from "@/components/Drawer";
+import Drawer from "@/components/PriceDrawer";
 
 export default function AreaAndAmount() {
   // States

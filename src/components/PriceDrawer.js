@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { BookingInformation } from "@/pages/_app";
 import { useContext, useState, useEffect } from "react";
-export default function Drawer() {
+export default function PriceDrawer() {
   const [totalPrice, setTotalPrice] = useState(0);
   const [bookingDetails, setBookingDetails] = useContext(BookingInformation);
   const ticketPrice = bookingDetails.ticketType === "regular" ? 799 : 1299;
