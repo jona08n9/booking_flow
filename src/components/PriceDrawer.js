@@ -12,13 +12,24 @@ export default function PriceDrawer() {
   const ticketPrice = bookingDetails.ticketType === "regular" ? 799 : 1299;
   const greenCampPrice = bookingDetails.greenCamp ? 249 : 0;
   const campSetUpPrice = bookingDetails.campSetUp ? 399 : 0;
+  const twoPersonTentPrice = 299;
+  const threePersonTentPrice = 399;
+  const [foofestTents, setFoofestTents] = useState({ twoPersonTent: 0, threePersonTent: 0 });
+
+  // console.log("foofest tents", foofestTents?.twoPersonTent);
 
   useEffect(() => {
     updateTotalPrice();
   }, [bookingDetails]);
   // this function adds to totalPrice for each ticket
   function updateTotalPrice() {
-    setTotalPrice(ticketPrice * bookingDetails.ticketAmount + greenCampPrice * bookingDetails.ticketAmount + campSetUpPrice);
+    setTotalPrice(
+      ticketPrice * bookingDetails.ticketAmount +
+        greenCampPrice * bookingDetails.ticketAmount +
+        campSetUpPrice +
+        twoPersonTentPrice * (bookingDetails.foofestTents?.twoPersonTent || 0) + //chatGPT helped with this line
+        twoPersonTentPrice * (bookingDetails.foofestTents?.threePersonTent || 0) //chatGPT helped with this line
+    );
   }
 
   /* makes sure that bookingDetails is updated everytime either  "ticketAmount" or "oneTentForEach" changes */
@@ -37,16 +48,52 @@ export default function PriceDrawer() {
   return (
     <div>
       <Accordion>
-        <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+        >
           <Typography className="text-lg  text-color-black">Total: {bookingDetails.totalPrice} ,-</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography className=" font-light text-color-black">
             {`${bookingDetails.ticketAmount}x ${bookingDetails.ticketType} Tickets ${ticketPrice},-`}
-            <br></br>
+            {/* lineBreak */}
+            {greenCampPrice !== 0 ? <br></br> : ""}
             {greenCampPrice !== 0 ? `${bookingDetails.ticketAmount}x GreenCamp ${greenCampPrice},-` : ""}
-            <br></br>
+            {/* lineBreak */}
+            {campSetUpPrice !== 0 ? <br></br> : ""}
             {campSetUpPrice !== 0 ? `1x Camp set up ${campSetUpPrice},-` : ""}
+
+            {/* lineBreak */}
+            {bookingDetails.privateTents && bookingDetails.privateTents.twoPersonTentPrivat ? <br></br> : ""}
+            {/* checks if both bookingDetails.foofestTens 
+            and bookingDetails.foofestTents.twoPersonTent is defined.  */}
+            {bookingDetails.privateTents && bookingDetails.privateTents.twoPersonTentPrivat
+              ? `${bookingDetails.privateTents.twoPersonTentPrivat}x 2 person tent free,-`
+              : ""}
+            {/* lineBreak */}
+            {bookingDetails.privateTents && bookingDetails.privateTents.threePersonTentPrivat ? <br></br> : ""}
+            {/* checks if both bookingDetails.foofestTens 
+            and bookingDetails.foofestTents.twoPersonTent is defined.  */}
+            {bookingDetails.privateTents && bookingDetails.privateTents.threePersonTentPrivat
+              ? `${bookingDetails.privateTents.threePersonTentPrivat}x 3 person tent free,-`
+              : ""}
+
+            {/* lineBreak */}
+            {bookingDetails.foofestTents && bookingDetails.foofestTents.twoPersonTent ? <br></br> : ""}
+            {/* checks if both bookingDetails.foofestTens 
+            and bookingDetails.foofestTents.twoPersonTent is defined.  */}
+            {bookingDetails.foofestTents && bookingDetails.foofestTents.twoPersonTent
+              ? `${bookingDetails.foofestTents.twoPersonTent}x 2 person tent ${twoPersonTentPrice},-`
+              : ""}
+            {/* lineBreak */}
+            {bookingDetails.foofestTents && bookingDetails.foofestTents.threePersonTent ? <br></br> : ""}
+            {/* checks if both bookingDetails.foofestTens 
+            and bookingDetails.foofestTents.twoPersonTent is defined.  */}
+            {bookingDetails.foofestTents && bookingDetails.foofestTents.threePersonTent
+              ? `${bookingDetails.foofestTents.threePersonTent}x 3 person tent ${threePersonTentPrice},-`
+              : ""}
           </Typography>
         </AccordionDetails>
       </Accordion>

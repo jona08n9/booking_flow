@@ -32,7 +32,6 @@ export default function AreaAndAmount() {
     setBookingDetails((prev) => ({
       ...prev,
       reservation_id,
-      tents: { "2personTent": 0, "3personTent": 0, "2personTentPrivat": 0, "3personTentPrivat": 0 },
     }));
   }
 
