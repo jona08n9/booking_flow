@@ -31,7 +31,7 @@ export function TicketAmountPicker(props) {
       ...prev,
       ticketAmount: ticketAmount,
       oneTentForEach: oneTentForEach,
-      tents: { "2personTent": twoPersonTentNum },
+      foofestTents: { twoPersonTent: twoPersonTentNum },
       ticketType: "regular",
       greenCamp: false,
     }));

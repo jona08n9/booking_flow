@@ -37,7 +37,8 @@ export default function TicketTypeAndAddOn() {
   function updateBookingDetails() {
     setBookingDetails((prev) => ({
       ...prev,
-      tents: { "2personTent": twoPersonTentNum, "3personTent": 0, "2personTentPrivat": 0, "3personTentPrivat": 0 },
+      foofestTents: { twoPersonTent: twoPersonTentNum, threePersonTent: 0 },
+      privateTents: { twoPersonTentPrivat: 0, threePersonTentPrivat: 0 },
     }));
   }
   return (

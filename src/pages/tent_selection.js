@@ -69,12 +69,9 @@ export default function TentSelection() {
   function updateBookingDetails() {
     setBookingDetails((prev) => ({
       ...prev,
-      tents: {
-        "2personTent": twoPersonTentNum,
-        "3personTent": threePersonTentNum,
-        "2personTentPrivat": twoPersonTentPrivatNum,
-        "3personTentPrivat": threePersonTentPrivatNum,
-      },
+
+      foofestTents: { twoPersonTent: twoPersonTentNum, threePersonTent: threePersonTentNum },
+      privateTents: { twoPersonTentPrivat: twoPersonTentPrivatNum, threePersonTentPrivat: threePersonTentPrivatNum },
     }));
   }
 
