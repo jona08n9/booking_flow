@@ -18,7 +18,7 @@ export default function PriceDrawer() {
   }, [bookingDetails]);
   // this function adds to totalPrice for each ticket
   function updateTotalPrice() {
-    setTotalPrice(ticketPrice * bookingDetails.ticketAmount + greenCampPrice);
+    setTotalPrice(ticketPrice * bookingDetails.ticketAmount + greenCampPrice * bookingDetails.ticketAmount + campSetUpPrice);
   }
 
   /* makes sure that bookingDetails is updated everytime either  "ticketAmount" or "oneTentForEach" changes */
@@ -46,7 +46,7 @@ export default function PriceDrawer() {
             <br></br>
             {greenCampPrice !== 0 ? `${bookingDetails.ticketAmount}x GreenCamp ${greenCampPrice},-` : ""}
             <br></br>
-            {campSetUpPrice !== 0 ? `1x GreenCamp ${campSetUpPrice},-` : ""}
+            {campSetUpPrice !== 0 ? `1x Camp set up ${campSetUpPrice},-` : ""}
           </Typography>
         </AccordionDetails>
       </Accordion>
