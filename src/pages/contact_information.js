@@ -10,6 +10,7 @@ import { IMaskInput } from "react-imask";
 import { NumericFormat } from "react-number-format";
 import { BookingInformation } from "./_app";
 import { useContext } from "react";
+import PriceDrawer from "@/components/PriceDrawer";
 
 const ValidationTextFieldPhone = styled(TextField)(({ inputValue }) => ({
   "& label.Mui-focused": {
@@ -124,7 +125,7 @@ const NumericFormatCustom = React.forwardRef(function NumericFormatCustom(props,
 });
 
 function Contact() {
-  const [bookingDetails, setBookingDetails] = useContext(BookingInformation)
+  const [bookingDetails, setBookingDetails] = useContext(BookingInformation);
   const [currentAccordionIndex, setCurrentAccordionIndex] = useState(0);
 
   const handleNextTicket = () => {
@@ -135,12 +136,21 @@ function Contact() {
     <>
       <form>
         {[...Array(bookingDetails.ticketAmount)].map((_, index) => (
-          <ContactForm numOfTickets={index + 1} key={index} isExpanded={index === currentAccordionIndex} onNextTicket={handleNextTicket} onClickAccordion={() => setCurrentAccordionIndex(index)} />
+          <ContactForm
+            numOfTickets={index + 1}
+            key={index}
+            isExpanded={index === currentAccordionIndex}
+            onNextTicket={handleNextTicket}
+            onClickAccordion={() => setCurrentAccordionIndex(index)}
+          />
         ))}
-        <Button className=" rounded-none border-2 border-solid place-self-center border-color-yellow h-10 mb-10 px-6 text-color-yellow hover:bg-color-yellow hover:text-color-black font-sans font-semibold gap-5 ">
+        <Button className=" mb-10 h-10 gap-5 place-self-center rounded-none border-2 border-solid border-color-yellow px-6 font-sans font-semibold text-color-yellow hover:bg-color-yellow hover:text-color-black ">
           <span className="pt-1">Go to payment</span>
         </Button>
       </form>
+      <div className={`fixed bottom-0 left-0 right-0 `}>
+        <PriceDrawer />
+      </div>{" "}
     </>
   );
 }
@@ -169,19 +179,88 @@ function ContactForm(props) {
   const inputValueZip = zipCode.length;
 
   return (
-    <Accordion className="bg-color-white " expanded={props.isExpanded}>
-      <AccordionSummary aria-controls="panel1d-content" id="panel1d-header" onClick={props.onClickAccordion}>
+    <Accordion
+      className="bg-color-white "
+      expanded={props.isExpanded}
+    >
+      <AccordionSummary
+        aria-controls="panel1d-content"
+        id="panel1d-header"
+        onClick={props.onClickAccordion}
+      >
         <Typography className="text-color-black">Ticket #{props.numOfTickets} </Typography>
       </AccordionSummary>
       <AccordionDetails>
-        <ValidationTextField fullWidth type="text" label="First name" required variant="outlined" defaultValue="" id="validation-outlined-input" />
-        <ValidationTextField fullWidth className="mt-4" type="text" label="Last name" required variant="outlined" defaultValue="" id="validation-outlined-input" />
-        <ValidationTextFieldPhone className="mt-4" onChange={handleChange} name="textmask" id="formatted-text-mask-input" InputProps={{ inputComponent: TextMaskCustom }} fullWidth label="Phone number" required variant="outlined" value={values.textmask} inputValue={inputValue} />
-        <ValidationTextField type="email" fullWidth className="mt-4" label="Email" required variant="outlined" defaultValue="" id="validation-outlined-input" />
-        <ValidationTextField fullWidth className="mt-4" type="text" label="Street and house number" required variant="outlined" defaultValue="" id="validation-outlined-input" />
-        <ValidationTextFieldZip type="number" fullWidth className="mt-4" label="Zip code" required variant="outlined" value={zipCode} defaultValue="" id="validation-outlined-input" onChange={handleChangeZip} inputValueZip={inputValueZip} />
+        <ValidationTextField
+          fullWidth
+          type="text"
+          label="First name"
+          required
+          variant="outlined"
+          defaultValue=""
+          id="validation-outlined-input"
+        />
+        <ValidationTextField
+          fullWidth
+          className="mt-4"
+          type="text"
+          label="Last name"
+          required
+          variant="outlined"
+          defaultValue=""
+          id="validation-outlined-input"
+        />
+        <ValidationTextFieldPhone
+          className="mt-4"
+          onChange={handleChange}
+          name="textmask"
+          id="formatted-text-mask-input"
+          InputProps={{ inputComponent: TextMaskCustom }}
+          fullWidth
+          label="Phone number"
+          required
+          variant="outlined"
+          value={values.textmask}
+          inputValue={inputValue}
+        />
+        <ValidationTextField
+          type="email"
+          fullWidth
+          className="mt-4"
+          label="Email"
+          required
+          variant="outlined"
+          defaultValue=""
+          id="validation-outlined-input"
+        />
+        <ValidationTextField
+          fullWidth
+          className="mt-4"
+          type="text"
+          label="Street and house number"
+          required
+          variant="outlined"
+          defaultValue=""
+          id="validation-outlined-input"
+        />
+        <ValidationTextFieldZip
+          type="number"
+          fullWidth
+          className="mt-4"
+          label="Zip code"
+          required
+          variant="outlined"
+          value={zipCode}
+          defaultValue=""
+          id="validation-outlined-input"
+          onChange={handleChangeZip}
+          inputValueZip={inputValueZip}
+        />
       </AccordionDetails>
-      <Button className=" rounded-none border-2 border-solid place-self-center border-color-black h-10 mb-10 px-6 text-color-black hover:bg-color-black hover:text-color-yellow font-sans font-semibold gap-5 " onClick={props.onNextTicket}>
+      <Button
+        className=" mb-10 h-10 gap-5 place-self-center rounded-none border-2 border-solid border-color-black px-6 font-sans font-semibold text-color-black hover:bg-color-black hover:text-color-yellow "
+        onClick={props.onNextTicket}
+      >
         <span className="pt-1">Next ticket</span>
       </Button>
     </Accordion>
