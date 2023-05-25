@@ -52,9 +52,15 @@ export function TicketAmountPicker(props) {
     <>
       <div className="flex items-center">
         <Button
-          className="rounded-2 h-14 place-self-center border-2 border-solid border-color-yellow font-sans text-5xl font-bold text-color-blue"
+          className="rounded-2 h-14 place-self-center border-2 border-solid border-color-yellow font-sans text-5xl font-bold text-color-blue focus:border-color-yellow"
           variant="contained"
-          style={{ backgroundColor: "yellow" }}
+          sx={{
+            backgroundColor: "yellow",
+            "&:focus": {
+              color: "yellow",
+              backgroundColor: "gray",
+            },
+          }}
           onClick={() => addOrSubtractTicket(false)} /* this button subtracts one from ticketAmount */
         >
           -
@@ -63,9 +69,15 @@ export function TicketAmountPicker(props) {
         <p className="mx-16 text-5xl font-bold">{ticketAmount}</p>
 
         <Button
-          className="rounded-2 h-14 place-self-center border-2 border-solid border-color-yellow font-sans text-5xl font-bold text-color-blue"
+          className="rounded-2 h-14 place-self-center border-2 border-solid border-color-yellow font-sans text-5xl font-bold text-color-blue focus:border-color-yellow"
           variant="text"
-          style={{ backgroundColor: "yellow" }}
+          sx={{
+            backgroundColor: "yellow",
+            "&:focus": {
+              color: "yellow",
+              backgroundColor: "gray",
+            },
+          }}
           onClick={() => addOrSubtractTicket(true)} /* this button adds one to ticketAmount */
         >
           +
