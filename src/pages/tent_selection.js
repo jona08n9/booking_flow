@@ -149,7 +149,7 @@ export default function TentSelection() {
           {bookingDetails.campSetUp ? (
             ""
           ) : (
-            <article className="mb-20 mt-12">
+            <article className="mx-3 mb-20 mt-5 bg-gradient-to-b from-color-opacity-20 to-color-opacity-10 pb-5 pt-10 ">
               <h3 className="text-center">Bring your own tent</h3>
               <small className="mt-3 grid place-content-center opacity-75">How many tents do you bring yourself?</small>
               <div className="mt-6 flex flex-col  ">
@@ -169,7 +169,7 @@ export default function TentSelection() {
             </article>
           )}
 
-          <article className="mt-12">
+          <article className="mx-3 mt-12 bg-gradient-to-b from-color-opacity-20 to-color-opacity-10 pb-5 pt-10">
             <h3 className="text-center">Buy tents from FooFest</h3>
             <small className="mt-3 grid place-content-center opacity-75">How many tents do you want to buy?</small>
             <div className="mt-6 flex flex-col  ">
