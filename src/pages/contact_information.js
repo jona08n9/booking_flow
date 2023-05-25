@@ -11,6 +11,8 @@ import { NumericFormat } from "react-number-format";
 import { BookingInformation } from "./_app";
 import { useContext } from "react";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import PriceDrawer from "@/components/PriceDrawer";
+import { useRouter } from "next/router";
 
 const ValidationTextFieldPhone = styled(TextField)(({ inputValue }) => ({
   "& label.Mui-focused": {
@@ -128,6 +130,8 @@ function Contact(props) {
   const [bookingDetails, setBookingDetails] = useContext(BookingInformation);
   const [currentAccordionIndex, setCurrentAccordionIndex] = useState(0);
   const [formArray, setFormArray] = useState([]);
+  const router = useRouter();
+
   console.log("number", bookingDetails.ticketAmount);
 
   const handleNextTicket = () => {
@@ -167,6 +171,10 @@ function Contact(props) {
     }));
   }
 
+  function goToPayment() {
+    router.push("/payment");
+  }
+
   return (
     <>
       {[...Array(bookingDetails.ticketAmount)].map((_, index) => (
@@ -190,6 +198,7 @@ function Contact(props) {
              place-s 
              elf-center mb-10 h-10
              gap-5 rounded-none border-2 border-solid border-color-yellow px-6 font-sans font-semibold text-color-yellow hover:bg-color-yellow hover:text-color-black "
+            onClick={goToPayment}
           >
             <span className="pt-1">Go to payment</span>
           </Button>
@@ -204,6 +213,9 @@ function Contact(props) {
           </Button>
         </div>
       )}
+      <div className={`fixed bottom-0 left-0 right-0 `}>
+        <PriceDrawer />
+      </div>
     </>
   );
 }
