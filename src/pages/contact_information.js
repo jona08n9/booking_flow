@@ -205,7 +205,7 @@ function Contact(props) {
           </Button>
         </div>
       )}
-      <form>
+      {/* <form>
         {[...Array(bookingDetails.ticketAmount)].map((_, index) => (
           <ContactForm
             numOfTickets={index + 1}
@@ -218,7 +218,7 @@ function Contact(props) {
         <Button className=" mb-10 h-10 gap-5 place-self-center rounded-none border-2 border-solid border-color-yellow px-6 font-sans font-semibold text-color-yellow hover:bg-color-yellow hover:text-color-black ">
           <span className="pt-1">Go to payment</span>
         </Button>
-      </form>
+      </form> */}
       <div className={`fixed bottom-0 left-0 right-0 `}>
         <PriceDrawer />
       </div>{" "}

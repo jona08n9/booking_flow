@@ -6,7 +6,6 @@ export function TentCounter(props) {
   return (
     <>
       <div className="mb-6">
-        <p className="mb-8 mt-8 text-center ">{`${props.size} Person tent ${props.price !== 0 && props.price !== undefined ? props.price + ",-" : ""}`}</p>
         <p className="mb-8 mt-8 text-center font-semibold ">{`${props.size} Person tent ${props.price !== 0 && props.price !== undefined ? props.price + ",-" : ""}`}</p>
 
         <div className="flex items-center justify-center">
