@@ -6,18 +6,14 @@ export function TentCounter(props) {
   return (
     <>
       <div className="mb-6">
-        <p className="mb-8 mt-8 text-center ">{`${props.size} Person tent ${
-          props.price !== 0 && props.price !== undefined ? props.price + ",-" : ""
-        }`}</p>
+        <p className="mb-8 mt-8 text-center font-semibold ">{`${props.size} Person tent ${props.price !== 0 && props.price !== undefined ? props.price + ",-" : ""}`}</p>
 
-        <div className="flex items-center	 justify-center">
+        <div className="flex items-center justify-center">
           <Button
             className="rounded-2 h-14 place-self-center border-2 border-solid border-color-yellow font-sans text-5xl font-bold text-color-blue"
             variant="contained"
             style={{ backgroundColor: "yellow" }}
-            onClick={() =>
-              props.addOrSubtractTent(false, props.size, props.type)
-            } /* this button subtracts one from ticketAmount */
+            onClick={() => props.addOrSubtractTent(false, props.size, props.type)} /* this button subtracts one from ticketAmount */
           >
             -
           </Button>

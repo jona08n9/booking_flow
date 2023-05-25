@@ -136,7 +136,7 @@ export default function TentSelection() {
         </Fade>
       </Modal>
       <section>
-        <h2 className="  mt-20 text-center">Tent Setup</h2>
+        <h2 className="mt-20 text-center">Tent Setup</h2>
 
         <article className="mt-5 grid place-content-center">
           <p>
@@ -151,7 +151,7 @@ export default function TentSelection() {
           ) : (
             <article className="mx-3 mb-20 mt-5 bg-gradient-to-b from-color-opacity-20 to-color-opacity-10 pb-5 pt-10 ">
               <h3 className="text-center">Bring your own tent</h3>
-              <small className="mt-3 grid place-content-center opacity-75">How many tents do you bring yourself?</small>
+              <p className="mt-3 grid place-content-center opacity-75">How many tents do you bring yourself?</p>
               <div className="mt-6 flex flex-col  ">
                 <TentCounter
                   size={2}
@@ -171,7 +171,7 @@ export default function TentSelection() {
 
           <article className="mx-3 mt-12 bg-gradient-to-b from-color-opacity-20 to-color-opacity-10 pb-5 pt-10">
             <h3 className="text-center">Buy tents from FooFest</h3>
-            <small className="mt-3 grid place-content-center opacity-75">How many tents do you want to buy?</small>
+            <p className="mt-3 grid place-content-center opacity-75">How many tents do you want to buy?</p>
             <div className="mt-6 flex flex-col  ">
               <TentCounter
                 size={2}
