@@ -139,9 +139,10 @@ export default function TentSelection() {
         <h2 className="  mt-20 text-center">Tent Setup</h2>
 
         <article className="mt-5 grid place-content-center">
-          <p
-            className={spotsLeft <= 0 ? "text-color-yellow" : "text-color-white"}
-          >{`You have  ${spotsLeft} spots left to use.`}</p>
+          <p>
+            You have <span className={spotsLeft <= 0 ? "font-bold text-color-red" : "font-bold text-color-white"}>{spotsLeft}</span> spots left to use
+          </p>
+          <p></p>
         </article>
 
         <div>
