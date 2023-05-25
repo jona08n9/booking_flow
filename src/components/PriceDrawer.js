@@ -53,7 +53,9 @@ export default function PriceDrawer() {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography className="text-lg  text-color-black">Total: {bookingDetails.totalPrice} ,-</Typography>
+          <Typography className="font-regular text-lg text-color-black">
+            Total: <span className="font-bold">{bookingDetails.totalPrice} ,-</span>
+          </Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography className=" font-light text-color-black">
@@ -69,31 +71,23 @@ export default function PriceDrawer() {
             {bookingDetails.privateTents && bookingDetails.privateTents.twoPersonTentPrivat ? <br></br> : ""}
             {/* checks if both bookingDetails.foofestTens 
             and bookingDetails.foofestTents.twoPersonTent is defined.  */}
-            {bookingDetails.privateTents && bookingDetails.privateTents.twoPersonTentPrivat
-              ? `${bookingDetails.privateTents.twoPersonTentPrivat}x 2 person tent free,-`
-              : ""}
+            {bookingDetails.privateTents && bookingDetails.privateTents.twoPersonTentPrivat ? `${bookingDetails.privateTents.twoPersonTentPrivat}x 2 person tent free,-` : ""}
             {/* lineBreak */}
             {bookingDetails.privateTents && bookingDetails.privateTents.threePersonTentPrivat ? <br></br> : ""}
             {/* checks if both bookingDetails.foofestTens 
             and bookingDetails.foofestTents.twoPersonTent is defined.  */}
-            {bookingDetails.privateTents && bookingDetails.privateTents.threePersonTentPrivat
-              ? `${bookingDetails.privateTents.threePersonTentPrivat}x 3 person tent free,-`
-              : ""}
+            {bookingDetails.privateTents && bookingDetails.privateTents.threePersonTentPrivat ? `${bookingDetails.privateTents.threePersonTentPrivat}x 3 person tent free,-` : ""}
 
             {/* lineBreak */}
             {bookingDetails.foofestTents && bookingDetails.foofestTents.twoPersonTent ? <br></br> : ""}
             {/* checks if both bookingDetails.foofestTens 
             and bookingDetails.foofestTents.twoPersonTent is defined.  */}
-            {bookingDetails.foofestTents && bookingDetails.foofestTents.twoPersonTent
-              ? `${bookingDetails.foofestTents.twoPersonTent}x 2 person tent ${twoPersonTentPrice},-`
-              : ""}
+            {bookingDetails.foofestTents && bookingDetails.foofestTents.twoPersonTent ? `${bookingDetails.foofestTents.twoPersonTent}x 2 person tent ${twoPersonTentPrice},-` : ""}
             {/* lineBreak */}
             {bookingDetails.foofestTents && bookingDetails.foofestTents.threePersonTent ? <br></br> : ""}
             {/* checks if both bookingDetails.foofestTens 
             and bookingDetails.foofestTents.twoPersonTent is defined.  */}
-            {bookingDetails.foofestTents && bookingDetails.foofestTents.threePersonTent
-              ? `${bookingDetails.foofestTents.threePersonTent}x 3 person tent ${threePersonTentPrice},-`
-              : ""}
+            {bookingDetails.foofestTents && bookingDetails.foofestTents.threePersonTent ? `${bookingDetails.foofestTents.threePersonTent}x 3 person tent ${threePersonTentPrice},-` : ""}
           </Typography>
         </AccordionDetails>
       </Accordion>
