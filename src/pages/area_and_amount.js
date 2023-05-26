@@ -6,7 +6,7 @@ import Button from "@mui/material/Button";
 import { useRouter } from "next/router";
 import "material-symbols";
 import Drawer from "@/components/PriceDrawer";
-import config from "../../next.config";
+import config from "../../config";
 
 export default function AreaAndAmount() {
   // States
