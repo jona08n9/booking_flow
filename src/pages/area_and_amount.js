@@ -6,17 +6,18 @@ import Button from "@mui/material/Button";
 import { useRouter } from "next/router";
 import "material-symbols";
 import Drawer from "@/components/PriceDrawer";
+import config from "../../next.config";
 
 export default function AreaAndAmount() {
   // States
-
+  const apiUrl = config[process.env.NODE_ENV].apiUrl;
   /* creates state for our useContext "BookingInformation" that wraps around the hole app */
   const [bookingDetails, setBookingDetails] = useContext(BookingInformation);
   const router = useRouter();
   async function reserveTickets() {
     const payload = { area: bookingDetails.area, amount: bookingDetails.spotAmount };
 
-    const response = await fetch("http://localhost:8080/reserve-spot", {
+    const response = await fetch(`${apiUrl}/reserve-spot`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -39,8 +40,7 @@ export default function AreaAndAmount() {
     <main>
       <h1 className="mx-4 mt-10 text-center"> Purchase ticket</h1>
       <p className="mx-4 pb-10 pt-10">
-        With the mesmerizing <strong>Northern Lights</strong> as your backdrop, get ready to lose yourself to the beats of the
-        loudest music that's sure to get your heart racing.
+        With the mesmerizing <strong>Northern Lights</strong> as your backdrop, get ready to lose yourself to the beats of the loudest music that's sure to get your heart racing.
       </p>
 
       {/* component, that lets user choose amount of tickets */}
