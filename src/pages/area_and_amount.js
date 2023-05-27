@@ -39,10 +39,7 @@ export default function AreaAndAmount() {
   return (
     <main>
       <h1 className="mx-4 mt-10 text-center"> Purchase ticket</h1>
-<<<<<<< HEAD
-=======
       <p className="mx-4 pb-10 pt-10">
->>>>>>> 6ce027a48b7fcb5658dbb911c2734897f43f7512
         With the mesmerizing <strong>Northern Lights</strong> as your backdrop, get ready to lose yourself to the beats of the loudest music that's sure to get your heart racing.
       </p>
       <div className="mx-auto max-w-3xl">
@@ -63,18 +60,13 @@ export default function AreaAndAmount() {
         >
           Log bookingDetails
         </button>
-<<<<<<< HEAD
       </div>
       <div className="mt-10 flex justify-center">
         <Button className=" mb-10 h-10 gap-5 place-self-center rounded-none border-2 border-solid border-color-yellow px-6 font-sans font-semibold text-color-yellow hover:bg-color-yellow hover:text-color-black " onClick={reserveTickets}>
-=======
+
       </div> */}
       <div className=" mb-16 mt-10 flex justify-center">
-        <Button
-          className=" mb-10 h-10 gap-5 place-self-center rounded-none border-2 border-solid border-color-yellow px-6 font-sans font-semibold text-color-yellow hover:bg-color-yellow hover:text-color-black "
-          onClick={reserveTickets}
-        >
->>>>>>> 6ce027a48b7fcb5658dbb911c2734897f43f7512
+        <Button className=" mb-10 h-10 gap-5 place-self-center rounded-none border-2 border-solid border-color-yellow px-6 font-sans font-semibold text-color-yellow hover:bg-color-yellow hover:text-color-black " onClick={reserveTickets}>
           <span className="pt-1">Next step</span> <span className="material-symbols-outlined">arrow_forward</span>
         </Button>
       </div>
