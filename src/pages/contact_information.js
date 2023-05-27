@@ -22,17 +22,17 @@ const ValidationTextFieldPhone = styled(TextField)(({ inputValue }) => ({
   },
   "& .MuiOutlinedInput-root": {
     "& fieldset": {
-      borderColor: "black",
+      borderColor: "yellow",
     },
     "&:hover fieldset": {
       borderColor: "#B2BAC2",
     },
     "&.Mui-focused fieldset": {
-      borderColor: "#1D1C29",
+      borderColor: "yellow",
     },
     "& input:valid + fieldset": {
       borderColor: "green",
-      borderColor: inputValue === 11 ? "green" : "black",
+      borderColor: inputValue === 11 ? "green" : "yellow",
       borderWidth: 2,
     },
   },
@@ -47,17 +47,17 @@ const ValidationTextFieldZip = styled(TextField)(({ inputValueZip }) => ({
   },
   "& .MuiOutlinedInput-root": {
     "& fieldset": {
-      borderColor: "black",
+      borderColor: "yellow",
     },
     "&:hover fieldset": {
       borderColor: "#B2BAC2",
     },
     "&.Mui-focused fieldset": {
-      borderColor: "#1D1C29",
+      borderColor: "yellow",
     },
     "& input:valid + fieldset": {
       borderColor: "green",
-      borderColor: inputValueZip === 4 ? "green" : "black",
+      borderColor: inputValueZip === 4 ? "green" : "yellow",
       borderWidth: 2,
     },
   },
@@ -72,13 +72,13 @@ const ValidationTextField = styled(TextField)({
   },
   "& .MuiOutlinedInput-root": {
     "& fieldset": {
-      borderColor: "black",
+      borderColor: "yellow",
     },
     "&:hover fieldset": {
       borderColor: "#B2BAC2",
     },
     "&.Mui-focused fieldset": {
-      borderColor: "#1D1C29",
+      borderColor: "yellow",
     },
     "& input:valid + fieldset": {
       borderColor: "green",
@@ -255,19 +255,23 @@ function ContactForm(props) {
       onSubmit={props.handleSubmit}
     >
       <Accordion
-        className=" bg-color-white"
+        className="bg-color-opacity-20"
         expanded={props.isExpanded}
       >
         <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
+          expandIcon={<ExpandMoreIcon className="fill-color-white" />}
           aria-controls="panel1d-content"
           id="panel1d-header"
           onClick={props.onClickAccordion}
+          sx={{
+            ".&MuiFormLabel-root": "white",
+          }}
         >
-          <Typography className="text-color-black">Ticket #{props.numOfTickets} </Typography>
+          <Typography className="font-bold text-color-white">Ticket #{props.numOfTickets} </Typography>
         </AccordionSummary>
         <AccordionDetails>
           <ValidationTextField
+            className="text-color-white"
             inputProps={{ inputMode: "text" }}
             fullWidth
             type="text"
@@ -348,7 +352,9 @@ function ContactForm(props) {
           <Button
             type="submit"
             onClick={() => props.updateBookingDetails}
-            className=" mb-10 h-10 gap-5 place-self-center rounded-none border-2 border-solid border-color-black px-6 font-sans font-semibold text-color-black hover:bg-color-black hover:text-color-yellow "
+            className=" place-s 
+            elf-center mb-10 h-10
+            gap-5 rounded-none border-2 border-solid border-color-yellow px-6 font-sans font-semibold text-color-yellow hover:bg-color-yellow hover:text-color-black "
           >
             <span className="pt-1">Next ticket</span>
           </Button>
