@@ -6,7 +6,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import { Typography } from "@mui/material";
 export function GreenCamp() {
   const [bookingDetails, setBookingDetails] = useContext(BookingInformation);
-  const [greenCamp, setGreenCamp] = useState(false);
+
   const [isChecked, setIsChecked] = useState(false);
 
   // function changeGreenCamp(e) {
@@ -30,7 +30,7 @@ export function GreenCamp() {
   }, [isChecked]);
   return (
     <>
-      <div className="m-10 flex justify-around">
+      <div className="m-10 flex justify-start">
         <FormGroup className="flex items-center">
           <FormControlLabel
             control={
@@ -53,7 +53,11 @@ export function GreenCamp() {
                 }}
               />
             }
-            label={<Typography style={{ fontFamily: "var(--font-josefin" }}>Green camp</Typography>}
+            label={
+              <Typography style={{ fontFamily: "var(--font-josefin" }}>
+                <strong>Green camp?</strong> <br></br>249,- <span className="font-light">per. ticket</span>
+              </Typography>
+            }
             className="flex items-center pt-5 font-sans text-color-white"
           />
         </FormGroup>

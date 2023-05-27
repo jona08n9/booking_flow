@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import { TicketTypes } from "../components/TicketTypes";
 import { CampAddOns } from "@/components/CampAddOns";
 import "material-symbols";
+import Drawer from "@/components/PriceDrawer";
 
 export default function TicketTypeAndAddOn() {
   const [bookingDetails, setBookingDetails] = useContext(BookingInformation);
@@ -36,7 +37,8 @@ export default function TicketTypeAndAddOn() {
   function updateBookingDetails() {
     setBookingDetails((prev) => ({
       ...prev,
-      tents: { "2personTent": twoPersonTentNum },
+      foofestTents: { twoPersonTent: twoPersonTentNum, threePersonTent: 0 },
+      privateTents: { twoPersonTentPrivat: 0, threePersonTentPrivat: 0 },
     }));
   }
   return (
@@ -49,13 +51,13 @@ export default function TicketTypeAndAddOn() {
         </h2>
 
         <TicketTypes />
+        <section className="mx-3 bg-gradient-to-b from-color-opacity-20 to-color-opacity-10 pb-5 pt-10">
+          <h2 className="text-center">Camp Setup</h2>
 
-        <h2 className="text-center">Camp Setup</h2>
+          <CampAddOns></CampAddOns>
 
-        <CampAddOns></CampAddOns>
-
-        <Button onClick={loginfo}> logbookingINformation</Button>
-
+          {/* <Button onClick={loginfo}> logbookingINformation</Button> */}
+        </section>
         <div className="mt-10 flex justify-center">
           <Button
             className=" mb-10 h-10 gap-5 place-self-center rounded-none border-2 border-solid border-color-yellow px-6 font-sans font-semibold text-color-yellow hover:bg-color-yellow hover:text-color-black "
@@ -63,6 +65,9 @@ export default function TicketTypeAndAddOn() {
           >
             <span className="pt-1">Next step</span> <span className="material-symbols-outlined">arrow_forward</span>
           </Button>
+        </div>
+        <div className={`fixed bottom-0 left-0 right-0 `}>
+          <Drawer />
         </div>
       </main>
     </>

@@ -12,6 +12,7 @@ export function TicketAmountPicker(props) {
   const [ticketAmount, setTicketAmount] = useState(1);
   const [oneTentForEach, setOneTentForEach] = useState(false);
   const [twoPersonTentNum, setTwoPersonTentNum] = useState(0);
+
   const [numberOfTickets, setNumberOfTickets] = useState(0);
 
   /* makes sure that bookingDetails is updated everytime either  "ticketAmount" or "oneTentForEach" changes */
@@ -30,7 +31,10 @@ export function TicketAmountPicker(props) {
       ...prev,
       ticketAmount: ticketAmount,
       oneTentForEach: oneTentForEach,
-      tents: { "2personTent": twoPersonTentNum },
+      foofestTents: { twoPersonTent: twoPersonTentNum, threePersonTent: 0 },
+      privateTents: { twoPersonTentPrivat: 0, threePersonTentPrivat: 0 },
+      ticketType: "regular",
+      greenCamp: false,
     }));
   }
 
@@ -47,13 +51,35 @@ export function TicketAmountPicker(props) {
   return (
     <>
       <div className="flex items-center">
-        <Button className="rounded-2 h-14 place-self-center border-2 border-solid border-color-yellow font-sans text-5xl font-bold text-color-blue md:h-6 md:text-3xl" variant="contained" style={{ backgroundColor: "yellow" }} onClick={() => addOrSubtractTicket(false)} /* this button subtracts one from ticketAmount */>
+        <Button
+          className="rounded-2 h-14 place-self-center border-2 border-solid border-color-yellow font-sans text-5xl font-bold text-color-blue focus:border-color-yellow md:h-6 md:text-3xl"
+          variant="contained"
+          sx={{
+            backgroundColor: "yellow",
+            "&:focus": {
+              color: "yellow",
+              backgroundColor: "gray",
+            },
+          }}
+          onClick={() => addOrSubtractTicket(false)} /* this button subtracts one from ticketAmount */
+        >
           -
         </Button>
 
         <p className="mx-16 text-5xl font-bold">{ticketAmount}</p>
 
-        <Button className="rounded-2 h-14 place-self-center border-2 border-solid border-color-yellow font-sans text-5xl font-bold text-color-blue md:h-6 md:text-3xl" variant="text" style={{ backgroundColor: "yellow" }} onClick={() => addOrSubtractTicket(true)} /* this button adds one to ticketAmount */>
+        <Button
+          className="rounded-2 h-14 place-self-center border-2 border-solid border-color-yellow font-sans text-5xl font-bold text-color-blue focus:border-color-yellow md:h-6 md:text-3xl"
+          variant="text"
+          sx={{
+            backgroundColor: "yellow",
+            "&:focus": {
+              color: "yellow",
+              backgroundColor: "gray",
+            },
+          }}
+          onClick={() => addOrSubtractTicket(true)} /* this button adds one to ticketAmount */
+        >
           +
         </Button>
       </div>

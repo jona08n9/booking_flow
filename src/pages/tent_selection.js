@@ -10,6 +10,7 @@ import Typography from "@mui/material/Typography";
 import Backdrop from "@mui/material/Backdrop";
 import { Button } from "@mui/material";
 import Router, { useRouter } from "next/router";
+import Drawer from "@/components/PriceDrawer";
 
 export default function TentSelection() {
   const router = useRouter();
@@ -69,12 +70,9 @@ export default function TentSelection() {
   function updateBookingDetails() {
     setBookingDetails((prev) => ({
       ...prev,
-      tents: {
-        "2personTent": twoPersonTentNum,
-        "3personTent": threePersonTentNum,
-        "2personTentPrivat": twoPersonTentPrivatNum,
-        "3personTentPrivat": threePersonTentPrivatNum,
-      },
+
+      foofestTents: { twoPersonTent: twoPersonTentNum, threePersonTent: threePersonTentNum },
+      privateTents: { twoPersonTentPrivat: twoPersonTentPrivatNum, threePersonTentPrivat: threePersonTentPrivatNum },
     }));
   }
 
@@ -135,10 +133,13 @@ export default function TentSelection() {
         </Fade>
       </Modal>
       <section>
-        <h2 className="  mt-20 text-center">Tent Setup</h2>
+        <h2 className="mt-20 text-center">Tent Setup</h2>
 
         <article className="mt-5 grid place-content-center">
-          <p className={spotsLeft <= 0 ? "text-color-yellow" : "text-color-white"}>{`You have  ${spotsLeft} spots left to use.`}</p>
+          <p>
+            You have <span className={spotsLeft <= 0 ? "font-bold text-color-red" : "font-bold text-color-white"}>{spotsLeft}</span> spots left to use
+          </p>
+          <p></p>
         </article>
 
         <div>
@@ -147,7 +148,7 @@ export default function TentSelection() {
           ) : (
             <article className="mx-2.5 mb-12 mt-12 max-w-full rounded-sm bg-gradient-to-b from-color-opacity-20 to-color-opacity-10 px-8 pt-8 md:mx-auto md:max-w-2xl ">
               <h3 className="text-center">Bring your own tent</h3>
-              <small className="mt-3 grid place-content-center opacity-75">How many tents do you bring yourself?</small>
+              <p className="mt-3 grid place-content-center opacity-75">How many tents do you bring yourself?</p>
               <div className="mt-6 flex flex-col  ">
                 <TentCounter size={2} PersonInTentNum={twoPersonTentPrivatNum} addOrSubtractTent={addOrSubtractTent} type={"privat"} />
                 <TentCounter size={3} PersonInTentNum={threePersonTentPrivatNum} addOrSubtractTent={addOrSubtractTent} type={"privat"} />
@@ -165,7 +166,7 @@ export default function TentSelection() {
             </div>
           </article>
         </div>
-        <div className="mt-10 flex justify-center">
+        <div className="mb-16 mt-10 flex justify-center">
           <Button className=" mb-10 h-10 gap-5 place-self-center rounded-none border-2 border-solid border-color-yellow px-6 font-sans font-semibold text-color-yellow hover:bg-color-yellow hover:text-color-black " onClick={nextPage}>
             <span className="pt-1">Next step</span> <span className="material-symbols-outlined">arrow_forward</span>
           </Button>
@@ -179,8 +180,8 @@ export default function TentSelection() {
           }}
         >
           Log bookingDetails
-        </button>
-
+        </button> */}
+        {/*
         <button
           className="m-5 bg-color-white p-5"
           onClick={() => {
@@ -192,6 +193,9 @@ export default function TentSelection() {
 
         <button onClick={() => console.log(spotsLeft)}> se spotsleft</button> */}
       </section>
+      <div className={`fixed bottom-0 left-0 right-0  `}>
+        <Drawer />
+      </div>
     </>
   );
 }

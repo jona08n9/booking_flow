@@ -8,11 +8,8 @@ export function CampAddOns() {
 
   return (
     <>
-      <div>
-        <GreenCamp />
-
-        <CampSetUp />
-      </div>
+      <GreenCamp />
+      <CampSetUp />
     </>
   );
 }

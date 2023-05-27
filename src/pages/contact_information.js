@@ -10,6 +10,8 @@ import { IMaskInput } from "react-imask";
 import { NumericFormat } from "react-number-format";
 import { BookingInformation } from "./_app";
 import { useContext } from "react";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import PriceDrawer from "@/components/PriceDrawer";
 
 const ValidationTextFieldPhone = styled(TextField)(({ inputValue }) => ({
   "& label.Mui-focused": {
@@ -123,24 +125,103 @@ const NumericFormatCustom = React.forwardRef(function NumericFormatCustom(props,
   );
 });
 
-function Contact() {
-  const [bookingDetails, setBookingDetails] = useContext(BookingInformation)
+function Contact(props) {
+  const [bookingDetails, setBookingDetails] = useContext(BookingInformation);
   const [currentAccordionIndex, setCurrentAccordionIndex] = useState(0);
+  const [formArray, setFormArray] = useState([]);
+  console.log("number", bookingDetails.ticketAmount);
 
   const handleNextTicket = () => {
     setCurrentAccordionIndex(currentAccordionIndex + 1);
+    console.log(formArray);
   };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const formData = {
+      firstName: event.target.firstName.value,
+      lastName: event.target.lastName.value,
+      phoneNumber: event.target.phoneNumber.value,
+      email: event.target.email.value,
+      streetAdress: event.target.streetAdress.value,
+      zipCode: event.target.zipCode.value,
+    };
+
+    setFormArray((prevFormArray) => [...prevFormArray, formData]);
+    handleNextTicket();
+    console.log("Form Data:", JSON.stringify(formData));
+    console.log(formData); // Log the stringified form data
+    console.log(formArray.length);
+    // event.target.reset()
+  };
+
+  useEffect(() => {
+    console.log(formArray);
+  }, [formArray]);
+
+  function updateBookingDetails() {
+    setBookingDetails((prev) => ({
+      ...prev,
+      contactInformation: {
+        formArray,
+      },
+    }));
+  }
 
   return (
     <>
-      <form>
+      {[...Array(bookingDetails.ticketAmount)].map((_, index) => (
+        <ContactForm
+          bookingDetails={bookingDetails}
+          updateBookingDetails={updateBookingDetails}
+          numOfTickets={index + 1}
+          key={index}
+          fromIndex={index}
+          isExpanded={index === currentAccordionIndex}
+          onNextTicket={handleNextTicket}
+          handleSubmit={handleSubmit}
+          onClickAccordion={() => setCurrentAccordionIndex(index)}
+        />
+      ))}
+      {bookingDetails.ticketAmount === formArray.length ? (
+        <div className="mt-10 flex justify-center">
+          <Button
+            onClick={updateBookingDetails}
+            className="
+             place-s 
+             elf-center mb-10 h-10
+             gap-5 rounded-none border-2 border-solid border-color-yellow px-6 font-sans font-semibold text-color-yellow hover:bg-color-yellow hover:text-color-black "
+          >
+            <span className="pt-1">Go to payment</span>
+          </Button>
+        </div>
+      ) : (
+        <div className="mt-10 flex justify-center">
+          <Button
+            disabled={true}
+            className=" mb-10 h-10 gap-5 place-self-center rounded-none border-2 border-solid border-color-gray bg-color-gray px-6 font-sans font-semibold text-color-black hover:bg-color-yellow hover:text-color-black "
+          >
+            <span className="pt-1">Go to payment</span>
+          </Button>
+        </div>
+      )}
+      {/* <form>
         {[...Array(bookingDetails.ticketAmount)].map((_, index) => (
-          <ContactForm numOfTickets={index + 1} key={index} isExpanded={index === currentAccordionIndex} onNextTicket={handleNextTicket} onClickAccordion={() => setCurrentAccordionIndex(index)} />
+          <ContactForm
+            numOfTickets={index + 1}
+            key={index}
+            isExpanded={index === currentAccordionIndex}
+            onNextTicket={handleNextTicket}
+            onClickAccordion={() => setCurrentAccordionIndex(index)}
+          />
         ))}
-        <Button className=" rounded-none border-2 border-solid place-self-center border-color-yellow h-10 mb-10 px-6 text-color-yellow hover:bg-color-yellow hover:text-color-black font-sans font-semibold gap-5 ">
+        <Button className=" mb-10 h-10 gap-5 place-self-center rounded-none border-2 border-solid border-color-yellow px-6 font-sans font-semibold text-color-yellow hover:bg-color-yellow hover:text-color-black ">
           <span className="pt-1">Go to payment</span>
         </Button>
-      </form>
+      </form> */}
+      <div className={`fixed bottom-0 left-0 right-0 `}>
+        <PriceDrawer />
+      </div>{" "}
     </>
   );
 }
@@ -148,7 +229,7 @@ function Contact() {
 function ContactForm(props) {
   const [zipCode, setZipCode] = useState("");
   const [values, setValues] = React.useState({
-    textmask: "",
+    phoneNumber: "",
   });
 
   const handleChange = (event) => {
@@ -165,26 +246,118 @@ function ContactForm(props) {
     // console.log(event.target.value.length);
   };
 
-  const inputValue = values.textmask.length;
+  const inputValue = values.phoneNumber.length;
   const inputValueZip = zipCode.length;
 
   return (
-    <Accordion className="bg-color-white " expanded={props.isExpanded}>
-      <AccordionSummary aria-controls="panel1d-content" id="panel1d-header" onClick={props.onClickAccordion}>
-        <Typography className="text-color-black">Ticket #{props.numOfTickets} </Typography>
-      </AccordionSummary>
-      <AccordionDetails>
-        <ValidationTextField fullWidth type="text" label="First name" required variant="outlined" defaultValue="" id="validation-outlined-input" />
-        <ValidationTextField fullWidth className="mt-4" type="text" label="Last name" required variant="outlined" defaultValue="" id="validation-outlined-input" />
-        <ValidationTextFieldPhone className="mt-4" onChange={handleChange} name="textmask" id="formatted-text-mask-input" InputProps={{ inputComponent: TextMaskCustom }} fullWidth label="Phone number" required variant="outlined" value={values.textmask} inputValue={inputValue} />
-        <ValidationTextField type="email" fullWidth className="mt-4" label="Email" required variant="outlined" defaultValue="" id="validation-outlined-input" />
-        <ValidationTextField fullWidth className="mt-4" type="text" label="Street and house number" required variant="outlined" defaultValue="" id="validation-outlined-input" />
-        <ValidationTextFieldZip type="number" fullWidth className="mt-4" label="Zip code" required variant="outlined" value={zipCode} defaultValue="" id="validation-outlined-input" onChange={handleChangeZip} inputValueZip={inputValueZip} />
-      </AccordionDetails>
-      <Button className=" rounded-none border-2 border-solid place-self-center border-color-black h-10 mb-10 px-6 text-color-black hover:bg-color-black hover:text-color-yellow font-sans font-semibold gap-5 " onClick={props.onNextTicket}>
-        <span className="pt-1">Next ticket</span>
-      </Button>
-    </Accordion>
+    <form
+      className="mb-2"
+      onSubmit={props.handleSubmit}
+    >
+      <Accordion
+        className=" bg-color-white"
+        expanded={props.isExpanded}
+      >
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1d-content"
+          id="panel1d-header"
+          onClick={props.onClickAccordion}
+        >
+          <Typography className="text-color-black">Ticket #{props.numOfTickets} </Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <ValidationTextField
+            inputProps={{ inputMode: "text" }}
+            fullWidth
+            type="text"
+            label="First name"
+            required
+            variant="outlined"
+            defaultValue=""
+            id="validation-outlined-input"
+            name="firstName"
+          />
+          <ValidationTextField
+            inputProps={{ inputMode: "text" }}
+            fullWidth
+            className="mt-4"
+            type="text"
+            label="Last name"
+            required
+            variant="outlined"
+            defaultValue=""
+            id="validation-outlined-input"
+            name="lastName"
+          />
+          <ValidationTextFieldPhone
+            inputProps={{ inputMode: "tel" }}
+            className="mt-4"
+            onChange={handleChange}
+            id="formatted-text-mask-input"
+            InputProps={{ inputComponent: TextMaskCustom }}
+            fullWidth
+            label="Phone number"
+            required
+            variant="outlined"
+            value={values.phoneNumber}
+            inputValue={inputValue}
+            name="phoneNumber"
+          />
+          <ValidationTextField
+            inputProps={{ inputMode: "email" }}
+            type="email"
+            fullWidth
+            className="mt-4"
+            label="Email"
+            required
+            variant="outlined"
+            defaultValue=""
+            id="validation-outlined-input"
+            name="email"
+          />
+          <ValidationTextField
+            inputProps={{ inputMode: "text" }}
+            fullWidth
+            className="mt-4"
+            type="text"
+            label="Street and house number"
+            required
+            variant="outlined"
+            defaultValue=""
+            id="validation-outlined-input"
+            name="streetAdress"
+          />
+          <ValidationTextFieldZip
+            inputProps={{ inputMode: "decimal" }}
+            type="number"
+            fullWidth
+            className="mt-4"
+            label="Zip code"
+            required
+            variant="outlined"
+            value={zipCode}
+            defaultValue=""
+            id="validation-outlined-input"
+            onChange={handleChangeZip}
+            inputValueZip={inputValueZip}
+            name="zipCode"
+          />
+        </AccordionDetails>
+        <div className="mt-10 flex justify-center">
+          <Button
+            type="submit"
+            onClick={() => props.updateBookingDetails}
+            className=" mb-10 h-10 gap-5 place-self-center rounded-none border-2 border-solid border-color-black px-6 font-sans font-semibold text-color-black hover:bg-color-black hover:text-color-yellow "
+          >
+            <span className="pt-1">Next ticket</span>
+          </Button>
+        </div>
+        {/* <Button onClick={() => console.log(props.bookingDetails)} className=" mb-10 h-10 gap-5 place-self-center rounded-none border-2 border-solid border-color-black px-6 font-sans font-semibold text-color-black hover:bg-color-black hover:text-color-yellow ">
+          <span className="pt-1">log info</span>
+        </Button> */}
+      </Accordion>
+    </form>
   );
 }
 

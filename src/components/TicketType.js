@@ -1,6 +1,10 @@
 import Radio from "@mui/material/Radio";
+import { BookingInformation } from "@/pages/_app";
+import { useContext } from "react";
 
 export function TicketType(props) {
+  const price = props.radioValue === "regular" ? 799 : 1299;
+  const [bookingDetails, setBookingDetails] = useContext(BookingInformation);
   return (
     <>
       <article
