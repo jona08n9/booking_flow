@@ -263,9 +263,6 @@ function ContactForm(props) {
           aria-controls="panel1d-content"
           id="panel1d-header"
           onClick={props.onClickAccordion}
-          sx={{
-            ".&MuiFormLabel-root": "white",
-          }}
         >
           <Typography className="font-bold text-color-white">Ticket #{props.numOfTickets} </Typography>
         </AccordionSummary>

@@ -47,18 +47,18 @@ export default function PriceDrawer() {
 
   return (
     <div>
-      <Accordion>
+      <Accordion className="bg-color-opacity-40">
         <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
+          expandIcon={<ExpandMoreIcon className="rotate-180 fill-color-white" />}
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography className="font-regular text-lg text-color-black">
+          <Typography className="font-regular text-lg text-color-white">
             Total: <span className="font-bold">{bookingDetails.totalPrice} ,-</span>
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography className=" font-light text-color-black">
+          <Typography className=" font-light text-color-white">
             {`${bookingDetails.ticketAmount}x ${bookingDetails.ticketType} Tickets ${ticketPrice},-`}
             {/* lineBreak */}
             {greenCampPrice !== 0 ? <br></br> : ""}
