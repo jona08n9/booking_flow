@@ -146,7 +146,7 @@ export default function TentSelection() {
           {bookingDetails.campSetUp ? (
             ""
           ) : (
-            <article className="mx-2.5 mb-12 mt-12 max-w-full rounded-sm bg-gradient-to-b from-color-opacity-20 to-color-opacity-10 px-8 pt-8 md:mx-auto md:max-w-2xl ">
+            <article className="mx-1 mb-12 mt-12 max-w-full rounded-sm bg-gradient-to-b from-color-opacity-20 to-color-opacity-10 px-8 pt-8 md:mx-auto md:max-w-2xl ">
               <h3 className="text-center">Bring your own tent</h3>
               <p className="mt-3 grid place-content-center opacity-75">How many tents do you bring yourself?</p>
               <div className="mt-6 flex flex-col  ">
@@ -156,7 +156,7 @@ export default function TentSelection() {
             </article>
           )}
 
-          <article className="mx-2.5 mt-8 max-w-full rounded-sm bg-gradient-to-b from-color-opacity-20 to-color-opacity-10 px-8 pt-8 md:mx-auto md:max-w-2xl">
+          <article className="mx-1 mt-8 max-w-full rounded-sm bg-gradient-to-b from-color-opacity-20 to-color-opacity-10 px-8 pt-8 md:mx-auto md:max-w-2xl">
             <h3 className="text-center">Buy tents from FooFest</h3>
             <h3 className="mt-4 text-center text-base text-color-white">We'll set up your tents for you, so can enjoy the full festival experience without any hassle.</h3>
             <small className="mt-3 grid place-content-center opacity-75">How many tents do you want to buy?</small>

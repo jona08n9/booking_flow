@@ -27,7 +27,7 @@ export function TicketTypes() {
 
   return (
     <>
-      <section className="my-10 grid grid-cols-2 	">
+      <section className="my-10 grid-cols-2 flex-col-reverse sm:grid 	">
         <TicketType // This component is one of the ticketTypes
           ticketType={"Regular"} // Name of TicketType
           typeAddOns={"No goodies added"} // ticket type add ons

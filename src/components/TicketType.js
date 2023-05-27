@@ -39,7 +39,7 @@ export function TicketType(props) {
         </div>
         <div className="mt-2 flex flex-col justify-start">
           {/* This is the explainer text for the card */}
-          <p className={`duration-200 `}>{`${props.ticketType} tickets includes:`}</p>
+          <p className={`m-0 duration-200 `}>{`${props.ticketType} tickets includes:`}</p>
           {/* <p className={`duration-200 `}>Regular tickets includes:</p> */}
           {props.ticketType === "Regular" ? (
             <ul className="pl-5">
