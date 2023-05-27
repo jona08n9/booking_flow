@@ -107,7 +107,7 @@ export function TicketAmountPicker(props) {
             />
           }
           label={<Typography style={{ fontFamily: "var(--font-josefin" }}>One tent for each person?</Typography>}
-          className="flex items-center pt-5 font-sans text-color-white"
+          className="flex items-center font-sans text-color-white"
         />
       </FormGroup>
     </>

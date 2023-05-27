@@ -135,7 +135,7 @@ export function AreaListItem(props) {
       </Modal>
 
       <section
-        className={`duration-500" flex h-32 w-full cursor-pointer flex-col self-center rounded-sm bg-color-black bg-gradient-to-b from-color-opacity-20 to-color-opacity-10 py-4 pl-2 pr-3 text-lg  ${areaAvailable() === "text-color-red" ? "bg-color-opacity-40" : ""}
+        className={`duration-500" flex h-32 w-full cursor-pointer flex-col self-center rounded-sm bg-color-black bg-gradient-to-b from-color-opacity-20 to-color-opacity-10 py-4 pl-2 pr-3 text-lg sm:w-auto  ${areaAvailable() === "text-color-red" ? "bg-color-opacity-40" : ""}
       ${area.area === bookingDetails.area ? "bg-gradient-to-b from-color-teal to-color-purple" : ""}
       
       `}
@@ -143,7 +143,7 @@ export function AreaListItem(props) {
       >
         <div className="mr-0 flex justify-between duration-200">
           <h3 className={` self-center text-lg duration-200 ${areaAvailable() === "text-color-red" ? "text-color-gray" : ""}`}>{area.area}</h3>
-          <RadioGroup aria-label="area" name="area" value={initialArea} onChange={updateBookingInformation}>
+          <RadioGroup className="self-center" aria-label="area" name="area" value={initialArea} onChange={updateBookingInformation}>
             <FormControlLabel
               value={area.area}
               control={
@@ -172,7 +172,7 @@ export function AreaListItem(props) {
 
         <div className="mt-auto flex justify-between  ">
           <p className={`self-center duration-200 ${areaAvailable() === "text-color-red" ? "text-color-gray" : ""}`}>spots left</p>
-          <div className="font-sans">
+          <div className="self-center font-sans">
             <span className={"pr-2.5 text-2xl font-bold " + areaAvailable()}>{area.available}</span>
           </div>
         </div>

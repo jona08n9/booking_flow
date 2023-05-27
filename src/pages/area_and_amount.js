@@ -39,7 +39,7 @@ export default function AreaAndAmount() {
   return (
     <main>
       <h1 className="mx-4 mt-10 text-center"> Purchase ticket</h1>
-      <p className="mx-4 pb-10 pt-10">
+      <p className="mx-auto my-10 max-w-2xl">
         With the mesmerizing <strong>Northern Lights</strong> as your backdrop, get ready to lose yourself to the beats of the loudest music that's sure to get your heart racing.
       </p>
       <div className="mx-auto max-w-3xl">
