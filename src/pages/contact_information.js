@@ -12,6 +12,7 @@ import { BookingInformation } from "./_app";
 import { useContext } from "react";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import PriceDrawer from "@/components/PriceDrawer";
+import { useRouter } from "next/router";
 
 const ValidationTextFieldPhone = styled(TextField)(({ inputValue }) => ({
   "& label.Mui-focused": {
@@ -26,6 +27,9 @@ const ValidationTextFieldPhone = styled(TextField)(({ inputValue }) => ({
     },
     "&:hover fieldset": {
       borderColor: "#B2BAC2",
+    },
+    "& input": {
+      color: "#f9f9f9", // Set the text color
     },
     "&.Mui-focused fieldset": {
       borderColor: "yellow",
@@ -48,6 +52,9 @@ const ValidationTextFieldZip = styled(TextField)(({ inputValueZip }) => ({
   "& .MuiOutlinedInput-root": {
     "& fieldset": {
       borderColor: "yellow",
+    },
+    "& input": {
+      color: "#f9f9f9", // Set the text color
     },
     "&:hover fieldset": {
       borderColor: "#B2BAC2",
@@ -73,6 +80,9 @@ const ValidationTextField = styled(TextField)({
   "& .MuiOutlinedInput-root": {
     "& fieldset": {
       borderColor: "yellow",
+    },
+    "& input": {
+      color: "#f9f9f9", // Set the text color
     },
     "&:hover fieldset": {
       borderColor: "#B2BAC2",
@@ -129,6 +139,8 @@ function Contact(props) {
   const [bookingDetails, setBookingDetails] = useContext(BookingInformation);
   const [currentAccordionIndex, setCurrentAccordionIndex] = useState(0);
   const [formArray, setFormArray] = useState([]);
+  const router = useRouter();
+
   console.log("number", bookingDetails.ticketAmount);
 
   const handleNextTicket = () => {
@@ -163,9 +175,14 @@ function Contact(props) {
     setBookingDetails((prev) => ({
       ...prev,
       contactInformation: {
-        formArray,
+        ...formArray,
       },
     }));
+    goToPayment();
+  }
+
+  function goToPayment() {
+    router.push("/payment");
   }
 
   return (
@@ -191,6 +208,7 @@ function Contact(props) {
              place-s 
              elf-center mb-10 h-10
              gap-5 rounded-none border-2 border-solid border-color-yellow px-6 font-sans font-semibold text-color-yellow hover:bg-color-yellow hover:text-color-black "
+            // onClick={goToPayment}
           >
             <span className="pt-1">Go to payment</span>
           </Button>
@@ -205,23 +223,19 @@ function Contact(props) {
           </Button>
         </div>
       )}
-      {/* <form>
-        {[...Array(bookingDetails.ticketAmount)].map((_, index) => (
-          <ContactForm
-            numOfTickets={index + 1}
-            key={index}
-            isExpanded={index === currentAccordionIndex}
-            onNextTicket={handleNextTicket}
-            onClickAccordion={() => setCurrentAccordionIndex(index)}
-          />
-        ))}
-        <Button className=" mb-10 h-10 gap-5 place-self-center rounded-none border-2 border-solid border-color-yellow px-6 font-sans font-semibold text-color-yellow hover:bg-color-yellow hover:text-color-black ">
-          <span className="pt-1">Go to payment</span>
+
+      {/* <div className="mt-10 flex justify-center">
+        <Button
+          onClick={() => console.log(bookingDetails)}
+          className=" mb-10 h-10 gap-5 place-self-center rounded-none border-2 border-solid border-color-gray bg-color-gray px-6 font-sans font-semibold text-color-black hover:bg-color-yellow hover:text-color-black "
+        >
+          <span className="pt-1">Log information</span>
         </Button>
-      </form> */}
+      </div> */}
+
       <div className={`fixed bottom-0 left-0 right-0 `}>
         <PriceDrawer />
-      </div>{" "}
+      </div>
     </>
   );
 }
