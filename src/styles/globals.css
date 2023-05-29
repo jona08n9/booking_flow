@@ -4,7 +4,7 @@
 
 :root {
   --white: #f9f9f9;
-  --gillSans: "Gill Sans", sans-serif;
+  --gillSans: "Gill Sans", "Tahoma", sans-serif;
   --font-playfair: "Playfair Display", serif;
 }
 
