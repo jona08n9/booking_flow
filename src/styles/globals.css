@@ -4,7 +4,7 @@
 
 :root {
   --white: #f9f9f9;
-  --font-josefin: "Josefin Sans", sans-serif;
+  --gillSans: "Gill Sans", sans-serif;
   --font-playfair: "Playfair Display", serif;
 }
 
@@ -21,7 +21,7 @@ h2,
 h3,
 p {
   color: var(--white);
-  font-family: var(--font-josefin);
+  font-family: var(--gillSans);
 }
 
 h2 {
@@ -31,7 +31,7 @@ h2 {
   position: relative;
   -webkit-text-stroke: 0.12rem currentcolor;
   -webkit-text-fill-color: transparent;
-  font-family: var(--font-josefin);
+  font-family: var(--gillSans);
   color: var(--white);
   font-weight: 700;
   line-height: 2rem;
@@ -49,10 +49,10 @@ p {
 }
 small {
   color: var(--white);
-  font-family: var(--font-josefin);
+  font-family: var(--gillSans);
 }
 span {
-  font-family: var(--font-josefin);
+  font-family: var(--gillSans);
 }
 
 /* Removes the margin on the radio button */
@@ -66,12 +66,12 @@ span {
 }
 
 .css-ahj2mt-MuiTypography-root {
-  font-family: var(--font-josefin);
+  font-family: var(--gillSans);
 }
 
 .css-10botns-MuiInputBase-input-MuiFilledInput-input,
 .css-md26zr-MuiInputBase-root-MuiOutlinedInput-root {
-  font-family: var(--font-josefin);
+  font-family: var(--gillSans);
 }
 .css-1jy569b-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
   color: #1d1c29;
