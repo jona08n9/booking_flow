@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { styled } from "@mui/material/styles";
-import TextField from "@mui/material/TextField";
-import { IMaskInput } from "react-imask";
+import "material-symbols";
 import { BookingInformation } from "./_app";
 import { useContext } from "react";
 import PriceDrawer from "@/components/PriceDrawer";
 import { useRouter } from "next/router";
 import { PaymentForm } from "../components/PaymentForm";
+import { Button } from "@mui/material";
 
 // export const ValidationTextFieldCardNum = styled(TextField)(({ inputValue }) => ({
 //   "& label.Mui-focused": {
@@ -230,6 +229,15 @@ export default function Contact(props) {
           onNextTicket={handleNextTicket}
           handleSubmit={handleSubmit}
         />
+
+        <div className=" mb-16 mt-10 flex justify-center">
+          <Button
+            className=" mb-10 h-10 gap-5 place-self-center rounded-none border-2 border-solid border-color-yellow px-6 font-sans font-semibold text-color-yellow hover:bg-color-yellow hover:text-color-black "
+            onClick={() => console.log("button clicked")}
+          >
+            <span className="pt-1">Next step</span> <span className="material-symbols-outlined">arrow_forward</span>
+          </Button>
+        </div>
 
         <div className={`fixed bottom-0 left-0 right-0 `}>
           <PriceDrawer />

@@ -231,34 +231,37 @@ export function PaymentForm(props) {
         inputValue={inputValue}
         name="cardNumber"
       />
-      <ValidationTextFieldMonthYear
-        inputProps={{ inputMode: "decimal" }}
-        className="mt-4"
-        onChange={handleChangemonthYearValue}
-        id="formatted-text-mask-input"
-        InputProps={{ inputComponent: TextMaskmonthYearValue }}
-        fullWidth
-        label="Month/Year"
-        required
-        variant="outlined"
-        value={monthYearValue.monthYear}
-        inputValue={inputValuemonthYearValue}
-        name="monthYear"
-      />
-      <ValidationTextFieldCvc
-        inputProps={{ inputMode: "decimal" }}
-        className="mt-4"
-        onChange={handleChangeCvc}
-        id="formatted-text-mask-input"
-        InputProps={{ inputComponent: TextMaskCvc }}
-        fullWidth
-        label="CVC"
-        required
-        variant="outlined"
-        value={cvcValue.cvc}
-        inputValue={inputValueCvc}
-        name="cvc"
-      />
+      <div className="flex gap-2">
+        <ValidationTextFieldMonthYear
+          inputProps={{ inputMode: "decimal" }}
+          className="mt-4"
+          onChange={handleChangemonthYearValue}
+          id="formatted-text-mask-input"
+          InputProps={{ inputComponent: TextMaskmonthYearValue }}
+          fullWidth
+          label="Month/Year"
+          required
+          variant="outlined"
+          value={monthYearValue.monthYear}
+          inputValue={inputValuemonthYearValue}
+          name="monthYear"
+        />
+        <ValidationTextFieldCvc
+          inputProps={{ inputMode: "decimal" }}
+          className="mt-4"
+          onChange={handleChangeCvc}
+          id="formatted-text-mask-input"
+          InputProps={{ inputComponent: TextMaskCvc }}
+          fullWidth
+          label="CVC"
+          required
+          variant="outlined"
+          value={cvcValue.cvc}
+          inputValue={inputValueCvc}
+          name="cvc"
+        />
+      </div>
+
       {/* <ValidationTextField
               inputProps={{ inputMode: "text" }}
               fullWidth
@@ -271,15 +274,6 @@ export function PaymentForm(props) {
               name="cvc"
             /> */}
 
-      <div className="mt-10 flex justify-center">
-        <Button
-          type="submit"
-          onClick={() => props.updateBookingDetails}
-          className=" mb-10 h-10 gap-5 place-self-center rounded-none border-2 border-solid border-color-black px-6 font-sans font-semibold text-color-black hover:bg-color-black hover:text-color-yellow "
-        >
-          <span className="pt-1">Next ticket</span>
-        </Button>
-      </div>
       {/* <Button onClick={() => console.log(props.bookingDetails)} className=" mb-10 h-10 gap-5 place-self-center rounded-none border-2 border-solid border-color-black px-6 font-sans font-semibold text-color-black hover:bg-color-black hover:text-color-yellow ">
                 <span className="pt-1">log info</span>
               </Button> */}
