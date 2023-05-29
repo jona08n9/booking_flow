@@ -16,7 +16,7 @@ export const ValidationTextFieldCardNum = styled(TextField)(({ inputValue }) => 
       borderColor: "#F9F01F",
     },
     "& input": {
-      color: "#F9F01F", // Set the text color
+      color: "#f9f9f9", // Set the text color
     },
 
     "&:hover fieldset": {
@@ -46,7 +46,7 @@ export const ValidationTextFieldCardHolderName = styled(TextField)({
       color: "#F9F01F",
     },
     "& input": {
-      color: "#F9F01F", // Set the text color
+      color: "#f9f9f9", // Set the text color
     },
     "&:hover fieldset": {
       borderColor: "#F9F01F",
@@ -73,7 +73,7 @@ export const ValidationTextFieldMonthYear = styled(TextField)(({ inputValue }) =
       borderColor: "#F9F01F",
     },
     "& input": {
-      color: "#F9F01F", // Set the text color
+      color: "#f9f9f9", // Set the text color
     },
 
     "&:hover fieldset": {
@@ -101,7 +101,7 @@ export const ValidationTextFieldCvc = styled(TextField)(({ inputValue }) => ({
       borderColor: "#F9F01F",
     },
     "& input": {
-      color: "#F9F01F", // Set the text color
+      color: "#f9f9f9", // Set the text color
     },
 
     "&:hover fieldset": {

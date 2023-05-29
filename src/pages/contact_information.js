@@ -28,6 +28,9 @@ const ValidationTextFieldPhone = styled(TextField)(({ inputValue }) => ({
     "&:hover fieldset": {
       borderColor: "#B2BAC2",
     },
+    "& input": {
+      color: "#f9f9f9", // Set the text color
+    },
     "&.Mui-focused fieldset": {
       borderColor: "yellow",
     },
@@ -49,6 +52,9 @@ const ValidationTextFieldZip = styled(TextField)(({ inputValueZip }) => ({
   "& .MuiOutlinedInput-root": {
     "& fieldset": {
       borderColor: "yellow",
+    },
+    "& input": {
+      color: "#f9f9f9", // Set the text color
     },
     "&:hover fieldset": {
       borderColor: "#B2BAC2",
@@ -74,6 +80,9 @@ const ValidationTextField = styled(TextField)({
   "& .MuiOutlinedInput-root": {
     "& fieldset": {
       borderColor: "yellow",
+    },
+    "& input": {
+      color: "#f9f9f9", // Set the text color
     },
     "&:hover fieldset": {
       borderColor: "#B2BAC2",
