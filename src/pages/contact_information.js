@@ -166,9 +166,10 @@ function Contact(props) {
     setBookingDetails((prev) => ({
       ...prev,
       contactInformation: {
-        formArray,
+        ...formArray,
       },
     }));
+    goToPayment();
   }
 
   function goToPayment() {
@@ -198,7 +199,7 @@ function Contact(props) {
              place-s 
              elf-center mb-10 h-10
              gap-5 rounded-none border-2 border-solid border-color-yellow px-6 font-sans font-semibold text-color-yellow hover:bg-color-yellow hover:text-color-black "
-            onClick={goToPayment}
+            // onClick={goToPayment}
           >
             <span className="pt-1">Go to payment</span>
           </Button>
@@ -213,6 +214,16 @@ function Contact(props) {
           </Button>
         </div>
       )}
+
+      {/* <div className="mt-10 flex justify-center">
+        <Button
+          onClick={() => console.log(bookingDetails)}
+          className=" mb-10 h-10 gap-5 place-self-center rounded-none border-2 border-solid border-color-gray bg-color-gray px-6 font-sans font-semibold text-color-black hover:bg-color-yellow hover:text-color-black "
+        >
+          <span className="pt-1">Log information</span>
+        </Button>
+      </div> */}
+
       <div className={`fixed bottom-0 left-0 right-0 `}>
         <PriceDrawer />
       </div>
