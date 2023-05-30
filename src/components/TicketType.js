@@ -8,7 +8,8 @@ export function TicketType(props) {
   return (
     <>
       <article
-        className="bg-color-back w-42 m-2.5 flex cursor-pointer flex-col rounded-sm bg-gradient-to-b from-color-opacity-20 to-color-opacity-10 py-4 pl-2 pr-3"
+        className={`bg-color-back w-42 m-2.5 flex cursor-pointer flex-col rounded-sm bg-gradient-to-b from-color-opacity-20 to-color-opacity-10 py-4 pl-2 pr-3 
+        ${props.selectedValue === props.radioValue ? "bg-gradient-to-b from-color-teal to-color-purple" : ""}`}
         onClick={() => props.pickTicketType(props.radioValue)} /* makes the card clickable and calls 
         "pickTicketType" from parent component */
       >
@@ -44,14 +45,26 @@ export function TicketType(props) {
           {props.ticketType === "Regular" ? (
             <ul className="pl-5">
               <li className="my-2 list-disc text-color-white">
-                <span className="font-bold">Dirt:</span> <span className="font-light">to eat</span>
+                <span className="font-bold">General Entry:</span> <span className="font-light">access to the festival grounds and can enjoy all the performances and attractions.</span>
               </li>
               <li className="mb-2 list-disc text-color-white">
-                <span className="font-bold">Water:</span> <span className="font-light">When it rains</span>
+                <span className="font-bold">Standard Amenities:</span> <span className="font-light">Utilize the common facilities, such as regular restrooms, food and beverage vendors</span>
               </li>
-              <li className="mb-2 list-disc text-color-white">
-                <span className="font-bold">A bucket:</span> <span className="font-light">to sh*t in</span>
+              <li className=" mb-2 list-disc text-color-white">
+                <span className="font-bold">Main Stage:</span> <span className="font-light">Enjoy performances on the main stage, which is the focal point of the festival and showcases the headline acts.in</span>
               </li>
+              <li className=" mb-2 list-disc text-color-white">
+                <span className="font-bold">Community Experience:</span> <span className="font-light">Immerse yourself in the vibrant festival atmosphere, socialize with fellow attendees, and participate in the overall festival experience.</span>
+              </li>
+              <li className=" mb-10 list-disc text-color-white">
+                <span className="font-bold">General Merchandise:</span> <span className="font-light">Have the opportunity to purchase festival merchandise and souvenirs available to all attendees</span>
+              </li>
+              <div className="mt-auto flex justify-between ">
+                <p>Price</p>
+                <div className="self-center font-sans">
+                  <p className="font-bold">799,-</p>
+                </div>
+              </div>
             </ul>
           ) : (
             <ul className="pl-5">
@@ -67,9 +80,15 @@ export function TicketType(props) {
               <li className="mb-2 list-disc text-color-white">
                 <span className="font-bold">VIP Merchendaise:</span> <span className="font-light">Exclusive festival merchandise and limited edition items specifically for VIP ticket holders to buy.</span>
               </li>
-              <li className="mb-2 list-disc text-color-white">
+              <li className="mb-10 list-disc text-color-white">
                 <span className="font-bold">VIP Lounge:</span> <span className="font-light">A dedicated lounge area with comfortable seating, premium food and beverage options, and access to private bars or specialty cocktails.</span>
               </li>
+              <div className="mt-auto flex justify-between ">
+                <p>Price</p>
+                <div className="self-center font-sans">
+                  <p className="font-bold">1299,-</p>
+                </div>
+              </div>
             </ul>
           )}
         </div>
