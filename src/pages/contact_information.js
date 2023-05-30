@@ -16,7 +16,10 @@ import { useRouter } from "next/router";
 
 const ValidationTextFieldPhone = styled(TextField)(({ inputValue }) => ({
   "& label.Mui-focused": {
-    color: "#A0AAB4",
+    color: "#f9f9f9", //label focused
+  },
+  "& label": {
+    color: "#f9f9f9", //label unfocused
   },
   "& .MuiInput-underline:after": {
     borderBottomColor: "#B2BAC2",
@@ -44,7 +47,10 @@ const ValidationTextFieldPhone = styled(TextField)(({ inputValue }) => ({
 
 const ValidationTextFieldZip = styled(TextField)(({ inputValueZip }) => ({
   "& label.Mui-focused": {
-    color: "#A0AAB4",
+    color: "#f9f9f9", //label focused
+  },
+  "& label": {
+    color: "#f9f9f9", //label unfocused
   },
   "& .MuiInput-underline:after": {
     borderBottomColor: "#B2BAC2",
@@ -72,7 +78,10 @@ const ValidationTextFieldZip = styled(TextField)(({ inputValueZip }) => ({
 
 const ValidationTextField = styled(TextField)({
   "& label.Mui-focused": {
-    color: "#A0AAB4",
+    color: "#f9f9f9", //label focused
+  },
+  "& label": {
+    color: "#f9f9f9", //label unfocused
   },
   "& .MuiInput-underline:after": {
     borderBottomColor: "#B2BAC2",
