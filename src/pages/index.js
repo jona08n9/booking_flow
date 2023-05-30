@@ -13,6 +13,7 @@ export default function AreaAndAmount() {
   const apiUrl = config[process.env.NODE_ENV].apiUrl;
   /* creates state for our useContext "BookingInformation" that wraps around the hole app */
   const [bookingDetails, setBookingDetails] = useContext(BookingInformation);
+  const [countdownTime, setCountdownTime] = useState(new Date().getTime() + 300000);
   const router = useRouter();
   async function reserveTickets() {
     const payload = { area: bookingDetails.area, amount: bookingDetails.spotAmount };
@@ -27,12 +28,14 @@ export default function AreaAndAmount() {
     const json = await response.json();
     console.log(json);
     updateBookingDetails(json.id);
+
     router.push(`/ticket_type_and_add_on`);
   }
   function updateBookingDetails(reservation_id) {
-    setBookingDetails((prev) => ({
+    setBookingDetails(prev => ({
       ...prev,
       reservation_id,
+      buyTimeout: countdownTime,
     }));
   }
 
@@ -40,8 +43,8 @@ export default function AreaAndAmount() {
     <main>
       <h1 className="mx-4 mt-10 text-center"> Purchase ticket</h1>
       <p className="mx-auto my-10 max-w-2xl">
-        With the mesmerizing <strong>Northern Lights</strong> as your backdrop, get ready to lose yourself to the beats of the
-        loudest music that's sure to get your heart racing.
+        With the mesmerizing <strong>Northern Lights</strong> as your backdrop, get ready to lose
+        yourself to the beats of the loudest music that's sure to get your heart racing.
       </p>
       <div className="mx-auto max-w-3xl">
         {/* component, that lets user choose amount of tickets */}
@@ -68,7 +71,8 @@ export default function AreaAndAmount() {
           className=" mb-10 h-10 gap-5 place-self-center rounded-none border-2 border-solid border-color-yellow px-6 font-sans font-semibold text-color-yellow hover:bg-color-yellow hover:text-color-black "
           onClick={reserveTickets}
         >
-          <span className="pt-1">Next step</span> <span className="material-symbols-outlined">arrow_forward</span>
+          <span className="pt-1">Next step</span>{" "}
+          <span className="material-symbols-outlined">arrow_forward</span>
         </Button>
       </div>
 
