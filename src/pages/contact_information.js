@@ -179,6 +179,7 @@ function Contact(props) {
       },
     }));
     goToPayment();
+    ``;
   }
 
   function goToPayment() {
