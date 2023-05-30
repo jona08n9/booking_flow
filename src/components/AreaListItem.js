@@ -60,8 +60,10 @@ export function AreaListItem(props) {
   };
 
   useEffect(() => {
-    updateBookingInformation();
-  }, [spotAmount]);
+    if (area.available > 0) {
+      updateBookingInformation();
+    }
+  }, [spotAmount, bookingDetails.ticketAmount]);
 
   // This function updates the bookingInformation, so that it  also contains the clicked area and amount of spots to reserve
   function updateBookingInformation() {
@@ -90,7 +92,10 @@ export function AreaListItem(props) {
     if (bookingDetails.oneTentForEach === true) {
       return bookingDetails.ticketAmount <= availableSpots ? colorClass + " text-color-green" : "text-color-red";
     } else if (bookingDetails.oneTentForEach === false) {
-      return (bookingDetails.ticketAmount < 3 && availableSpots > bookingDetails.ticketAmount) || bookingDetails.ticketAmount / 3 <= availableSpots ? colorClass + " text-color-green" : "text-color-red";
+      return (bookingDetails.ticketAmount < 3 && availableSpots > bookingDetails.ticketAmount) ||
+        bookingDetails.ticketAmount / 3 <= availableSpots
+        ? colorClass + " text-color-green"
+        : "text-color-red";
     }
   }
 
@@ -142,13 +147,17 @@ export function AreaListItem(props) {
       </Modal>
 
       <section
-        className={`duration-500" flex h-32 w-full cursor-pointer flex-col self-center rounded-sm bg-color-black bg-gradient-to-b from-color-opacity-20 to-color-opacity-10 py-4 pl-2 pr-3 text-lg sm:w-auto  ${areaAvailable() === "text-color-red" ? "bg-color-opacity-10" : ""}
+        className={`duration-500" flex h-32 w-full cursor-pointer flex-col self-center rounded-sm bg-color-black bg-gradient-to-b from-color-opacity-20 to-color-opacity-10 py-4 pl-2 pr-3 text-lg sm:w-auto  ${
+          areaAvailable() === "text-color-red" ? "bg-color-opacity-10" : ""
+        }
       ${area.area === bookingDetails.area ? "bg-gradient-to-b from-color-teal to-color-purple" : ""}
       `}
         onClick={checkTicketAndArea}
       >
         <div className="mr-0 flex justify-between duration-200">
-          <h3 className={` self-center text-lg duration-200 ${areaAvailable() === "text-color-red" ? "text-color-gray" : ""}`}>{area.area}</h3>
+          <h3 className={` self-center text-lg duration-200 ${areaAvailable() === "text-color-red" ? "text-color-gray" : ""}`}>
+            {area.area}
+          </h3>
           <RadioGroup
             className="self-center"
             aria-label="area"
@@ -183,7 +192,9 @@ export function AreaListItem(props) {
         </div>
 
         <div className="mt-auto flex justify-between ">
-          <p className={`self-center duration-200 ${areaAvailable() === "text-color-red" ? "text-color-gray" : ""}`}>spots left</p>
+          <p className={`self-center duration-200 ${areaAvailable() === "text-color-red" ? "text-color-gray" : ""}`}>
+            spots left
+          </p>
           <div className="self-center font-sans">
             <span className={"pr-2.5 text-2xl font-bold " + areaAvailable()}>{area.available}</span>
           </div>
