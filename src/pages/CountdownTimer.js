@@ -8,7 +8,7 @@ import Fade from "@mui/material/Fade";
 import Typography from "@mui/material/Typography";
 import { Button } from "@mui/material";
 
-export function CountdownTimer() {
+export default function CountdownTimer() {
   const router = useRouter();
   const [open, setOpen] = useState(false);
 
