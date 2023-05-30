@@ -149,9 +149,7 @@ export default function TentSelection() {
 
         <article className="mt-5 grid place-content-center">
           <p>
-            You have{" "}
-            <span className={spotsLeft <= 0 ? "font-bold text-color-red" : "font-bold text-color-white"}>{spotsLeft}</span> spots
-            left to use
+            You have <span className={spotsLeft <= 0 ? "font-bold text-color-red" : "font-bold text-color-white"}>{spotsLeft}</span> spots left to use
           </p>
           <p></p>
         </article>
@@ -183,7 +181,7 @@ export default function TentSelection() {
           <article className="mx-1 mt-8 max-w-full rounded-sm bg-gradient-to-b from-color-opacity-20 to-color-opacity-10 px-8 pt-8 md:mx-auto md:max-w-2xl">
             <h3 className="text-center">Buy tents from FooFest</h3>
             {/* <h3 className="mt-4 text-center text-base text-color-white">We'll set up your tents for you, so can enjoy the full festival experience without any hassle.</h3> */}
-            <small className="mt-3 grid place-content-center opacity-75">How many tents do you want to buy?</small>
+            <p className="mt-3 grid place-content-center opacity-75">How many tents do you want to buy?</p>
             <div className="mt-6 flex flex-col  ">
               <TentCounter
                 size={2}
