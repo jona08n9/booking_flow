@@ -7,10 +7,10 @@ import Checkbox from "@mui/material/Checkbox";
 import { Typography } from "@mui/material";
 import { MaterialSymbol } from "material-symbols";
 
-export function TicketAmountPicker(props) {
+export function TicketAmountPicker() {
   // Creates const variables and sets defaultState
   const [bookingDetails, setBookingDetails] = useContext(BookingInformation);
-  const [ticketAmount, setTicketAmount] = useState(1);
+  const [ticketAmount, setTicketAmount] = useState(0);
   const [oneTentForEach, setOneTentForEach] = useState(false);
   const [twoPersonTentNum, setTwoPersonTentNum] = useState(0);
 
