@@ -22,12 +22,12 @@ export function TicketAmountPicker(props) {
 
   // This function is checks action, and if action is true 1 is added to ticketAmount, but if it's false, then it subtracts one from ticketAmount
   function addOrSubtractTicket(action) {
-    action ? setTicketAmount((old) => old + 1) : setTicketAmount((old) => old - 1);
+    action ? setTicketAmount(old => old + 1) : setTicketAmount(old => old - 1);
   }
 
   /*This function updates bookingDetails, by setting state to the new values of "ticketAmount" and oneTentForEach*/
   function updateBookingDetails() {
-    setBookingDetails((prev) => ({
+    setBookingDetails(prev => ({
       ...prev,
       ticketAmount: ticketAmount,
       oneTentForEach: oneTentForEach,
@@ -61,7 +61,9 @@ export function TicketAmountPicker(props) {
               backgroundColor: "gray",
             },
           }}
-          onClick={() => addOrSubtractTicket(false)} /* this button subtracts one from ticketAmount */
+          onClick={() =>
+            addOrSubtractTicket(false)
+          } /* this button subtracts one from ticketAmount */
         >
           -
         </Button>
@@ -106,7 +108,11 @@ export function TicketAmountPicker(props) {
               }}
             />
           }
-          label={<Typography style={{ fontFamily: "var(--font-josefin" }}>One tent for each person?</Typography>}
+          label={
+            <Typography style={{ fontFamily: "var(--font-josefin" }}>
+              One tent for each person?
+            </Typography>
+          }
           className="flex items-center font-sans text-color-white"
         />
       </FormGroup>
