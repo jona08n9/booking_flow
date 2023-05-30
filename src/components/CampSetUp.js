@@ -51,7 +51,7 @@ export function CampSetUp() {
             }
             label={
               <Typography style={{ fontFamily: "var(--font-josefin" }}>
-                <strong> Want us to set up your camp?</strong> <br></br> 399,- <span className="font-light">per. ticket</span>
+                <strong> Want us to set up your camp?</strong> <br></br> 399,-
               </Typography>
             }
             className="flex items-center pt-5 font-sans text-color-white"
