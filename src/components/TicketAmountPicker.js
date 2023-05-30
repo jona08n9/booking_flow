@@ -23,12 +23,12 @@ export function TicketAmountPicker(props) {
 
   // This function is checks action, and if action is true 1 is added to ticketAmount, but if it's false, then it subtracts one from ticketAmount
   function addOrSubtractTicket(action) {
-    action ? setTicketAmount(old => old + 1) : setTicketAmount(old => old - 1);
+    action ? setTicketAmount((old) => old + 1) : setTicketAmount((old) => old - 1);
   }
 
   /*This function updates bookingDetails, by setting state to the new values of "ticketAmount" and oneTentForEach*/
   function updateBookingDetails() {
-    setBookingDetails(prev => ({
+    setBookingDetails((prev) => ({
       ...prev,
       ticketAmount: ticketAmount,
       oneTentForEach: oneTentForEach,
@@ -52,23 +52,38 @@ export function TicketAmountPicker(props) {
   return (
     <>
       <div className="flex items-center">
-        <Button
-          className="rounded-2 h-14 place-self-center border-2 border-solid border-color-yellow font-sans text-5xl font-bold text-color-blue focus:border-color-yellow  md:text-3xl "
-          variant="contained"
-          sx={{
-            backgroundColor: "yellow",
-            "&:focus": {
-              color: "yellow",
-              backgroundColor: "gray",
-            },
-          }}
-          onClick={() =>
-            addOrSubtractTicket(false)
-          } /* this button subtracts one from ticketAmount */
-        >
-          <span class="material-symbols-outlined">remove</span>
-        </Button>
-
+        {ticketAmount === 0 ? (
+          <Button
+            disabled={true}
+            className="rounded-2 h-14 place-self-center border-2 border-solid  border-color-gray bg-color-gray font-sans text-5xl font-bold  text-color-blue focus:border-color-yellow md:text-3xl"
+            variant="contained"
+            sx={{
+              backgroundColor: "yellow",
+              "&:focus": {
+                color: "yellow",
+                backgroundColor: "gray",
+              },
+            }}
+            onClick={() => addOrSubtractTicket(false)} /* this button subtracts one from ticketAmount */
+          >
+            <span class="material-symbols-outlined">remove</span>
+          </Button>
+        ) : (
+          <Button
+            className="rounded-2 h-14 place-self-center border-2 border-solid border-color-yellow font-sans text-5xl font-bold text-color-blue focus:border-color-yellow  md:text-3xl "
+            variant="contained"
+            sx={{
+              backgroundColor: "yellow",
+              "&:focus": {
+                color: "yellow",
+                backgroundColor: "gray",
+              },
+            }}
+            onClick={() => addOrSubtractTicket(false)} /* this button subtracts one from ticketAmount */
+          >
+            <span class="material-symbols-outlined">remove</span>
+          </Button>
+        )}
         <p className="mx-16 text-5xl font-bold">{ticketAmount}</p>
 
         <Button
@@ -109,11 +124,7 @@ export function TicketAmountPicker(props) {
               }}
             />
           }
-          label={
-            <Typography style={{ fontFamily: "var(--font-josefin" }}>
-              One tent for each person?
-            </Typography>
-          }
+          label={<Typography style={{ fontFamily: "var(--font-josefin" }}>One tent for each person?</Typography>}
           className="flex items-center font-sans text-color-white"
         />
       </FormGroup>
