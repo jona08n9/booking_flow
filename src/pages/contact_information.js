@@ -188,42 +188,44 @@ function Contact(props) {
 
   return (
     <>
-      {[...Array(bookingDetails.ticketAmount)].map((_, index) => (
-        <ContactForm
-          bookingDetails={bookingDetails}
-          updateBookingDetails={updateBookingDetails}
-          numOfTickets={index + 1}
-          key={index}
-          fromIndex={index}
-          isExpanded={index === currentAccordionIndex}
-          onNextTicket={handleNextTicket}
-          handleSubmit={handleSubmit}
-          onClickAccordion={() => setCurrentAccordionIndex(index)}
-        />
-      ))}
-      {bookingDetails.ticketAmount === formArray.length ? (
-        <div className="mt-10 flex justify-center">
-          <Button
-            onClick={updateBookingDetails}
-            className="
+      <div className="mx-1 mt-8 max-w-full rounded-sm bg-gradient-to-b from-color-opacity-20 to-color-opacity-10 px-8 pt-8 md:mx-auto md:max-w-2xl">
+        {[...Array(bookingDetails.ticketAmount)].map((_, index) => (
+          <ContactForm
+            bookingDetails={bookingDetails}
+            updateBookingDetails={updateBookingDetails}
+            numOfTickets={index + 1}
+            key={index}
+            fromIndex={index}
+            isExpanded={index === currentAccordionIndex}
+            onNextTicket={handleNextTicket}
+            handleSubmit={handleSubmit}
+            onClickAccordion={() => setCurrentAccordionIndex(index)}
+          />
+        ))}
+        {bookingDetails.ticketAmount === formArray.length ? (
+          <div className="mt-10 flex justify-center">
+            <Button
+              onClick={updateBookingDetails}
+              className="
              place-s 
              elf-center mb-10 h-10
              gap-5 rounded-none border-2 border-solid border-color-yellow px-6 font-sans font-semibold text-color-yellow hover:bg-color-yellow hover:text-color-black "
-            // onClick={goToPayment}
-          >
-            <span className="pt-1">Go to payment</span>
-          </Button>
-        </div>
-      ) : (
-        <div className="mt-10 flex justify-center">
-          <Button
-            disabled={true}
-            className=" mb-10 h-10 gap-5 place-self-center rounded-none border-2 border-solid border-color-gray bg-color-gray px-6 font-sans font-semibold text-color-black hover:bg-color-yellow hover:text-color-black "
-          >
-            <span className="pt-1">Go to payment</span>
-          </Button>
-        </div>
-      )}
+              // onClick={goToPayment}
+            >
+              <span className="pt-1">Go to payment</span>
+            </Button>
+          </div>
+        ) : (
+          <div className="mt-10 flex justify-center">
+            <Button
+              disabled={true}
+              className=" mb-10 h-10 gap-5 place-self-center rounded-none border-2 border-solid border-color-gray bg-color-gray px-6 font-sans font-semibold text-color-black hover:bg-color-yellow hover:text-color-black "
+            >
+              <span className="pt-1">Go to payment</span>
+            </Button>
+          </div>
+        )}
+      </div>
 
       {/* <div className="mt-10 flex justify-center">
         <Button
