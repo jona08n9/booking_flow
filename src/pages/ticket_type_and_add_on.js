@@ -13,7 +13,6 @@ import { CountdownTimer } from "./CountdownTimer";
 export default function TicketTypeAndAddOn() {
   const [bookingDetails, setBookingDetails] = useContext(BookingInformation);
   const [twoPersonTentNum, setTwoPersonTentNum] = useState(0);
-  const [countdownTime, setCountdownTime] = useState(new Date().getTime() + 300000);
 
   const router = useRouter();
   function loginfo() {
@@ -26,7 +25,6 @@ export default function TicketTypeAndAddOn() {
 
   useEffect(() => {
     updateTwoPersonTentNum();
-    updateCurrentTimer();
   }, []);
 
   useEffect(() => {
@@ -37,12 +35,6 @@ export default function TicketTypeAndAddOn() {
     bookingDetails.oneTentForEach
       ? setTwoPersonTentNum(bookingDetails.ticketAmount)
       : setTwoPersonTentNum(0);
-  }
-  function updateCurrentTimer() {
-    setBookingDetails(prev => ({
-      ...prev,
-      buyTimeout: countdownTime,
-    }));
   }
 
   /*This function updates bookingDetails, by setting state to the new values of "ticketAmount" and oneTentForEach*/
@@ -56,8 +48,9 @@ export default function TicketTypeAndAddOn() {
   return (
     <>
       <CountdownTimer />
-      <main>
-        <h2 className="mx-4 mt-10 text-center">
+
+      <main className="">
+        <h2 className="mx-4 mt-48 text-center">
           {/* {" "}
           {bookingInformation.ticketAmount > 1 ? "Regular og VIP tickets" : "Regular or VIP ticket"} */}
           Choose ticket type

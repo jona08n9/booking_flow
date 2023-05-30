@@ -152,7 +152,7 @@ export default function TentSelection() {
       </Modal>
       <CountdownTimer />
       <section>
-        <h2 className="mt-20 text-center">Tent Setup</h2>
+        <h2 className="mt-48 text-center">Tent Setup</h2>
 
         <article className="mt-5 grid place-content-center">
           <p>
