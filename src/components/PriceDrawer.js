@@ -47,7 +47,7 @@ export default function PriceDrawer() {
 
   return (
     <div>
-      <Accordion className="bg-color-opacity-40">
+      <Accordion className=" bg-color-gray">
         <AccordionSummary
           expandIcon={<ExpandMoreIcon className="rotate-180 fill-color-white" />}
           aria-controls="panel1a-content"
