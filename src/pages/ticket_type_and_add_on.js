@@ -47,7 +47,7 @@ export default function TicketTypeAndAddOn() {
     <>
       <CountdownTimer />
 
-      <main className="">
+      <main className="m-auto max-w-4xl">
         <h2 className="mx-4 mt-48 text-center">
           {/* {" "}
           {bookingInformation.ticketAmount > 1 ? "Regular og VIP tickets" : "Regular or VIP ticket"} */}
