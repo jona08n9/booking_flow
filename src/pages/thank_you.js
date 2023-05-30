@@ -7,7 +7,7 @@ export default function thankYou() {
 
   return (
     <>
-      <main className="grid place-content-center bg-gradient-to-b from-color-opacity-20 to-color-opacity-10 p-8">
+      <main className="mx-1 mt-8 max-w-full rounded-sm bg-gradient-to-b from-color-opacity-20 to-color-opacity-10 px-8 pt-8 md:mx-auto md:max-w-2xl">
         <h2 className=" text-center">Thanks for ordering</h2>
         <h3>Order confirmed</h3>
         <p>

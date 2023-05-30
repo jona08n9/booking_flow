@@ -36,9 +36,7 @@ export default function TentSelection() {
   }, [bookingDetails, totalTentCount]);
 
   function updateTotalTentCount() {
-    setTotalTentCount(
-      twoPersonTentNum + threePersonTentNum + twoPersonTentPrivatNum + threePersonTentPrivatNum
-    );
+    setTotalTentCount(twoPersonTentNum + threePersonTentNum + twoPersonTentPrivatNum + threePersonTentPrivatNum);
   }
 
   function updateSpotsLeft() {
@@ -51,19 +49,15 @@ export default function TentSelection() {
     } else {
       if (type === "privat") {
         if (size === 2) {
-          action
-            ? setTwoPersonTentPrivatNum(old => old + 1)
-            : setTwoPersonTentPrivatNum(old => old - 1);
+          action ? setTwoPersonTentPrivatNum((old) => old + 1) : setTwoPersonTentPrivatNum((old) => old - 1);
         } else if (size === 3) {
-          action
-            ? setThreePersonTentPrivatNum(old => old + 1)
-            : setThreePersonTentPrivatNum(old => old - 1);
+          action ? setThreePersonTentPrivatNum((old) => old + 1) : setThreePersonTentPrivatNum((old) => old - 1);
         }
       } else if (type === "foofest") {
         if (size === 2) {
-          action ? setTwoPersonTentNum(old => old + 1) : setTwoPersonTentNum(old => old - 1);
+          action ? setTwoPersonTentNum((old) => old + 1) : setTwoPersonTentNum((old) => old - 1);
         } else if (size === 3) {
-          action ? setThreePersonTentNum(old => old + 1) : setThreePersonTentNum(old => old - 1);
+          action ? setThreePersonTentNum((old) => old + 1) : setThreePersonTentNum((old) => old - 1);
         }
       }
     }
@@ -75,7 +69,7 @@ export default function TentSelection() {
 
   /*This function updates bookingDetails, by setting state to the new values of "ticketAmount" and oneTentForEach*/
   function updateBookingDetails() {
-    setBookingDetails(prev => ({
+    setBookingDetails((prev) => ({
       ...prev,
 
       foofestTents: { twoPersonTent: twoPersonTentNum, threePersonTent: threePersonTentNum },
@@ -136,8 +130,7 @@ export default function TentSelection() {
                 mt: 2,
               }}
             >
-              You have ran out of tent spots, if you want to fit more peope then buy or bring bigger
-              tents
+              You have ran out of tent spots, if you want to fit more peope then buy or bring bigger tents
             </Typography>
             <div className="mt-10 flex justify-center">
               <Button
@@ -157,12 +150,8 @@ export default function TentSelection() {
         <article className="mt-5 grid place-content-center">
           <p>
             You have{" "}
-            <span
-              className={spotsLeft <= 0 ? "font-bold text-color-red" : "font-bold text-color-white"}
-            >
-              {spotsLeft}
-            </span>{" "}
-            spots left to use
+            <span className={spotsLeft <= 0 ? "font-bold text-color-red" : "font-bold text-color-white"}>{spotsLeft}</span> spots
+            left to use
           </p>
           <p></p>
         </article>
@@ -173,9 +162,7 @@ export default function TentSelection() {
           ) : (
             <article className="mx-1 mb-12 mt-12 max-w-full rounded-sm bg-gradient-to-b from-color-opacity-20 to-color-opacity-10 px-8 pt-8 md:mx-auto md:max-w-2xl ">
               <h3 className="text-center">Bring your own tent</h3>
-              <p className="mt-3 grid place-content-center opacity-75">
-                How many tents do you bring yourself?
-              </p>
+              <p className="mt-3 grid place-content-center opacity-75">How many tents do you bring yourself?</p>
               <div className="mt-6 flex flex-col  ">
                 <TentCounter
                   size={2}
@@ -195,13 +182,8 @@ export default function TentSelection() {
 
           <article className="mx-1 mt-8 max-w-full rounded-sm bg-gradient-to-b from-color-opacity-20 to-color-opacity-10 px-8 pt-8 md:mx-auto md:max-w-2xl">
             <h3 className="text-center">Buy tents from FooFest</h3>
-            <h3 className="mt-4 text-center text-base text-color-white">
-              We'll set up your tents for you, so can enjoy the full festival experience without any
-              hassle.
-            </h3>
-            <small className="mt-3 grid place-content-center opacity-75">
-              How many tents do you want to buy?
-            </small>
+            {/* <h3 className="mt-4 text-center text-base text-color-white">We'll set up your tents for you, so can enjoy the full festival experience without any hassle.</h3> */}
+            <small className="mt-3 grid place-content-center opacity-75">How many tents do you want to buy?</small>
             <div className="mt-6 flex flex-col  ">
               <TentCounter
                 size={2}
@@ -225,8 +207,7 @@ export default function TentSelection() {
             className=" mb-10 h-10 gap-5 place-self-center rounded-none border-2 border-solid border-color-yellow px-6 font-sans font-semibold text-color-yellow hover:bg-color-yellow hover:text-color-black "
             onClick={nextPage}
           >
-            <span className="pt-1">Next step</span>{" "}
-            <span className="material-symbols-outlined">arrow_forward</span>
+            <span className="pt-1">Next step</span> <span className="material-symbols-outlined">arrow_forward</span>
           </Button>
         </div>
 
