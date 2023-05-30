@@ -18,9 +18,11 @@ export default function PriceDrawer() {
 
   // console.log("foofest tents", foofestTents?.twoPersonTent);
 
+  // useEffect that updates the total price everytime bookingDetail change
   useEffect(() => {
     updateTotalPrice();
   }, [bookingDetails]);
+
   // this function adds to totalPrice for each ticket
   function updateTotalPrice() {
     setTotalPrice(
@@ -71,23 +73,31 @@ export default function PriceDrawer() {
             {bookingDetails.privateTents && bookingDetails.privateTents.twoPersonTentPrivat ? <br></br> : ""}
             {/* checks if both bookingDetails.foofestTens 
             and bookingDetails.foofestTents.twoPersonTent is defined.  */}
-            {bookingDetails.privateTents && bookingDetails.privateTents.twoPersonTentPrivat ? `${bookingDetails.privateTents.twoPersonTentPrivat}x 2 person tent free,-` : ""}
+            {bookingDetails.privateTents && bookingDetails.privateTents.twoPersonTentPrivat
+              ? `${bookingDetails.privateTents.twoPersonTentPrivat}x 2 person tent free,-`
+              : ""}
             {/* lineBreak */}
             {bookingDetails.privateTents && bookingDetails.privateTents.threePersonTentPrivat ? <br></br> : ""}
             {/* checks if both bookingDetails.foofestTens 
             and bookingDetails.foofestTents.twoPersonTent is defined.  */}
-            {bookingDetails.privateTents && bookingDetails.privateTents.threePersonTentPrivat ? `${bookingDetails.privateTents.threePersonTentPrivat}x 3 person tent free,-` : ""}
+            {bookingDetails.privateTents && bookingDetails.privateTents.threePersonTentPrivat
+              ? `${bookingDetails.privateTents.threePersonTentPrivat}x 3 person tent free,-`
+              : ""}
 
             {/* lineBreak */}
             {bookingDetails.foofestTents && bookingDetails.foofestTents.twoPersonTent ? <br></br> : ""}
             {/* checks if both bookingDetails.foofestTens 
             and bookingDetails.foofestTents.twoPersonTent is defined.  */}
-            {bookingDetails.foofestTents && bookingDetails.foofestTents.twoPersonTent ? `${bookingDetails.foofestTents.twoPersonTent}x 2 person tent ${twoPersonTentPrice},-` : ""}
+            {bookingDetails.foofestTents && bookingDetails.foofestTents.twoPersonTent
+              ? `${bookingDetails.foofestTents.twoPersonTent}x 2 person tent ${twoPersonTentPrice},-`
+              : ""}
             {/* lineBreak */}
             {bookingDetails.foofestTents && bookingDetails.foofestTents.threePersonTent ? <br></br> : ""}
             {/* checks if both bookingDetails.foofestTens 
             and bookingDetails.foofestTents.twoPersonTent is defined.  */}
-            {bookingDetails.foofestTents && bookingDetails.foofestTents.threePersonTent ? `${bookingDetails.foofestTents.threePersonTent}x 3 person tent ${threePersonTentPrice},-` : ""}
+            {bookingDetails.foofestTents && bookingDetails.foofestTents.threePersonTent
+              ? `${bookingDetails.foofestTents.threePersonTent}x 3 person tent ${threePersonTentPrice},-`
+              : ""}
           </Typography>
         </AccordionDetails>
       </Accordion>
