@@ -58,7 +58,7 @@ export default function TicketTypeAndAddOn() {
 
           {/* <Button onClick={loginfo}> logbookingINformation</Button> */}
         </section>
-        <div className="mt-10 flex justify-center">
+        <div className="m-10 mb-20 flex justify-center">
           <Button
             className=" mb-10 h-10 gap-5 place-self-center rounded-none border-2 border-solid border-color-yellow px-6 font-sans font-semibold text-color-yellow hover:bg-color-yellow hover:text-color-black "
             onClick={nextPage}
