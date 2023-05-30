@@ -5,10 +5,10 @@ import TextField from "@mui/material/TextField";
 import { IMaskInput } from "react-imask";
 export const ValidationTextFieldCardNum = styled(TextField)(({ inputValue }) => ({
   "& label.Mui-focused": {
-    color: "#F9F01F",
+    color: "#f9f9f9", //label focused
   },
   "& label": {
-    color: "#F9F01F75",
+    color: "#f9f9f9", //label unfocused
   },
 
   "& .MuiOutlinedInput-root": {
@@ -34,10 +34,10 @@ export const ValidationTextFieldCardNum = styled(TextField)(({ inputValue }) => 
 
 export const ValidationTextFieldCardHolderName = styled(TextField)({
   "& label.Mui-focused": {
-    color: "#F9F01F",
+    color: "#f9f9f9", //label focused
   },
   "& label": {
-    color: "#F9F01F75",
+    color: "#f9f9f9", //label unfocused
   },
 
   "& .MuiOutlinedInput-root": {
@@ -62,10 +62,10 @@ export const ValidationTextFieldCardHolderName = styled(TextField)({
 });
 export const ValidationTextFieldMonthYear = styled(TextField)(({ inputValue }) => ({
   "& label.Mui-focused": {
-    color: "#F9F01F",
+    color: "#f9f9f9", //label focused
   },
   "& label": {
-    color: "#F9F01F75",
+    color: "#f9f9f9", //label unfocused
   },
 
   "& .MuiOutlinedInput-root": {
@@ -90,10 +90,10 @@ export const ValidationTextFieldMonthYear = styled(TextField)(({ inputValue }) =
 }));
 export const ValidationTextFieldCvc = styled(TextField)(({ inputValue }) => ({
   "& label.Mui-focused": {
-    color: "#F9F01F",
+    color: "#f9f9f9", //label focused
   },
   "& label": {
-    color: "#F9F01F75",
+    color: "#f9f9f9", //label unfocused
   },
 
   "& .MuiOutlinedInput-root": {
