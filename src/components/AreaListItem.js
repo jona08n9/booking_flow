@@ -142,7 +142,7 @@ export function AreaListItem(props) {
       </Modal>
 
       <section
-        className={`duration-500" flex h-32 w-full cursor-pointer flex-col self-center rounded-sm bg-color-black bg-gradient-to-b from-color-opacity-20 to-color-opacity-10 py-4 pl-2 pr-3 text-lg sm:w-auto  ${areaAvailable() === "text-color-red" ? "bg-color-opacity-40" : ""}
+        className={`duration-500" flex h-32 w-full cursor-pointer flex-col self-center rounded-sm bg-color-black bg-gradient-to-b from-color-opacity-20 to-color-opacity-10 py-4 pl-2 pr-3 text-lg sm:w-auto  ${areaAvailable() === "text-color-red" ? "bg-color-opacity-10" : ""}
       ${area.area === bookingDetails.area ? "bg-gradient-to-b from-color-teal to-color-purple" : ""}
       `}
         onClick={checkTicketAndArea}
