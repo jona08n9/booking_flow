@@ -33,10 +33,8 @@ export default function CountdownTimer() {
       if (distance < 0) {
         clearInterval(interval);
         setOpen(!open);
-        console.log("Time ran oot");
       } else {
         setTimeRemaining({ minutes, seconds });
-        console.log(Math.floor(distance / 1000));
       }
     }, 1000);
 
