@@ -18,7 +18,7 @@ export default function thankYou() {
         <div className=" mb-16 mt-10 flex justify-center">
           <Button
             className=" mb-10 h-10 gap-5 place-self-center rounded-none border-2 border-solid border-color-yellow px-6 font-sans font-semibold text-color-yellow hover:bg-color-yellow hover:text-color-black "
-            onClick={() => router.push("https://festival-rv84d8qnd-thefred94.vercel.app/")}
+            onClick={() => router.push("https://festival-app-six.vercel.app/")}
           >
             <span className="pt-1"> See program</span> <span className="material-symbols-outlined">arrow_forward</span>
           </Button>
