@@ -117,7 +117,7 @@ export default function payment(props) {
   return (
     <>
       <CountdownTimer />
-      <main>
+      <main className="mt-48">
         <Modal
           aria-labelledby="transition-modal-title"
           aria-describedby="transition-modal-description"
