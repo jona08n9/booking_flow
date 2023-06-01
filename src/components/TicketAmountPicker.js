@@ -55,7 +55,7 @@ export function TicketAmountPicker() {
         {ticketAmount === 0 ? (
           <Button
             disabled={true}
-            className="rounded-2 h-14 place-self-center border-2 border-solid border-color-yellow font-sans text-5xl font-bold text-color-blue focus:border-color-yellow  md:text-3xl"
+            className="rounded-2 h-14 place-self-center border-2 border-solid border-color-gray  font-sans text-5xl font-bold text-color-blue focus:border-color-yellow  md:text-3xl"
             variant="contained"
             sx={{
               backgroundColor: "yellow",
