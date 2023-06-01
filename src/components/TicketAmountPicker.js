@@ -23,12 +23,12 @@ export function TicketAmountPicker() {
 
   // This function is checks action, and if action is true 1 is added to ticketAmount, but if it's false, then it subtracts one from ticketAmount
   function addOrSubtractTicket(action) {
-    action ? setTicketAmount((old) => old + 1) : setTicketAmount((old) => old - 1);
+    action ? setTicketAmount(old => old + 1) : setTicketAmount(old => old - 1);
   }
 
   /*This function updates bookingDetails, by setting state to the new values of "ticketAmount" and oneTentForEach*/
   function updateBookingDetails() {
-    setBookingDetails((prev) => ({
+    setBookingDetails(prev => ({
       ...prev,
       ticketAmount: ticketAmount,
       oneTentForEach: oneTentForEach,
@@ -64,9 +64,11 @@ export function TicketAmountPicker() {
                 backgroundColor: "gray",
               },
             }}
-            onClick={() => addOrSubtractTicket(false)} /* this button subtracts one from ticketAmount */
+            onClick={() =>
+              addOrSubtractTicket(false)
+            } /* this button subtracts one from ticketAmount */
           >
-            <span class="material-symbols-outlined">remove</span>
+            <span className="material-symbols-outlined">remove</span>
           </Button>
         ) : (
           <Button
@@ -81,7 +83,7 @@ export function TicketAmountPicker() {
             }}
             onClick={() => addOrSubtractTicket(false)} /* this button adds one to ticketAmount */
           >
-            <span class="material-symbols-outlined">remove</span>
+            <span className="material-symbols-outlined">remove</span>
           </Button>
         )}
         <p className="mx-16 text-5xl font-bold">{ticketAmount}</p>
@@ -98,7 +100,7 @@ export function TicketAmountPicker() {
           }}
           onClick={() => addOrSubtractTicket(true)} /* this button adds one to ticketAmount */
         >
-          <span class="material-symbols-outlined">add</span>
+          <span className="material-symbols-outlined">add</span>
         </Button>
       </div>
 
@@ -124,7 +126,11 @@ export function TicketAmountPicker() {
               }}
             />
           }
-          label={<Typography style={{ fontFamily: "var(--font-josefin" }}>One tent for each person?</Typography>}
+          label={
+            <Typography style={{ fontFamily: "var(--font-josefin" }}>
+              One tent for each person?
+            </Typography>
+          }
           className="flex items-center font-sans text-color-white"
         />
       </FormGroup>
