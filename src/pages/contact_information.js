@@ -13,6 +13,7 @@ import { useContext } from "react";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import PriceDrawer from "@/components/PriceDrawer";
 import { useRouter } from "next/router";
+import CountdownTimer from "./CountdownTimer";
 
 const ValidationTextFieldPhone = styled(TextField)(({ inputValue }) => ({
   "& label.Mui-focused": {
@@ -197,6 +198,7 @@ function Contact(props) {
 
   return (
     <>
+      <CountdownTimer />
       <div className="mx-1 mt-8 max-w-full rounded-sm bg-gradient-to-b from-color-opacity-20 to-color-opacity-10 px-8 pt-8 md:mx-auto md:max-w-2xl">
         {[...Array(bookingDetails.ticketAmount)].map((_, index) => (
           <ContactForm

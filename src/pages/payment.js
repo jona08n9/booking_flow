@@ -13,6 +13,7 @@ import Modal from "@mui/material/Modal";
 import Fade from "@mui/material/Fade";
 
 import Typography from "@mui/material/Typography";
+import CountdownTimer from "./CountdownTimer";
 
 export default function payment(props) {
   const [bookingDetails, setBookingDetails] = useContext(BookingInformation);
@@ -115,6 +116,7 @@ export default function payment(props) {
 
   return (
     <>
+      <CountdownTimer />
       <main>
         <Modal
           aria-labelledby="transition-modal-title"

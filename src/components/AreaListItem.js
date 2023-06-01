@@ -80,7 +80,9 @@ export function AreaListItem(props) {
   function areaAvailable() {
     const availableSpots = area.available;
     let colorClass = "text-color-red"; // default color is red
-    if (availableSpots > 0 && availableSpots <= 49) {
+    if (availableSpots === 0) {
+      colorClass = "text-color-red";
+    } else if (availableSpots > 0 && availableSpots <= 49) {
       colorClass = "text-color-orange"; // set color to orange if available spots are between 1 and 49
     } else if (availableSpots >= 50 && availableSpots <= 100) {
       colorClass = "text-color-yellow"; // set color to yellow if available spots are between 50 and 100
@@ -92,10 +94,7 @@ export function AreaListItem(props) {
     if (bookingDetails.oneTentForEach === true) {
       return bookingDetails.ticketAmount <= availableSpots ? colorClass + " text-color-green" : "text-color-red";
     } else if (bookingDetails.oneTentForEach === false) {
-      return (bookingDetails.ticketAmount < 3 && availableSpots > bookingDetails.ticketAmount) ||
-        bookingDetails.ticketAmount / 3 <= availableSpots
-        ? colorClass + " text-color-green"
-        : "text-color-red";
+      return (bookingDetails.ticketAmount < 3 && availableSpots > bookingDetails.ticketAmount) || bookingDetails.ticketAmount / 3 <= availableSpots ? colorClass + " text-color-green" : "text-color-red";
     }
   }
 
@@ -120,19 +119,21 @@ export function AreaListItem(props) {
         <Fade in={open}>
           <Box sx={style}>
             <Typography
+              className="font-sans"
               id="transition-modal-title"
               variant="h6"
               component="h2"
             >
-              Der er ikke nok ledige pladser!
+              Not enough space on {area.area}
             </Typography>
             <Typography
+              className="font-sans"
               id="transition-modal-description"
               sx={{
                 mt: 2,
               }}
             >
-              For at købe billetter til dette område bedes du justere på antal af billetter
+              Choose another area or adjust the amount of tickets to match the available number of spots.
             </Typography>
             <div className="mt-10 flex justify-center">
               <Button
@@ -147,17 +148,13 @@ export function AreaListItem(props) {
       </Modal>
 
       <section
-        className={`duration-500" flex h-32 w-full cursor-pointer flex-col self-center rounded-sm bg-color-black bg-gradient-to-b from-color-opacity-20 to-color-opacity-10 py-4 pl-2 pr-3 text-lg sm:w-auto  ${
-          areaAvailable() === "text-color-red" ? "bg-color-opacity-10" : ""
-        }
+        className={`duration-500" flex h-32 w-full cursor-pointer flex-col self-center rounded-sm bg-color-black bg-gradient-to-b from-color-opacity-20 to-color-opacity-10 py-4 pl-2 pr-3 text-lg sm:w-auto ${area.available === 0 ? "bg-color-opacity-10" : ""} ${areaAvailable() === "text-color-red" ? "bg-color-opacity-10" : ""}
       ${area.area === bookingDetails.area ? "bg-gradient-to-b from-color-teal to-color-purple" : ""}
       `}
         onClick={checkTicketAndArea}
       >
         <div className="mr-0 flex justify-between duration-200">
-          <h3 className={` self-center text-lg duration-200 ${areaAvailable() === "text-color-red" ? "text-color-gray" : ""}`}>
-            {area.area}
-          </h3>
+          <h3 className={` self-center text-lg duration-200 ${area.available === 0 ? "text-color-gray" : ""} ${areaAvailable() === "text-color-red" ? "text-color-gray" : ""}`}>{area.area}</h3>
           <RadioGroup
             className="self-center"
             aria-label="area"
@@ -169,12 +166,13 @@ export function AreaListItem(props) {
               value={area.area}
               control={
                 <Radio
-                  className={`${areaAvailable() === "text-color-red" ? "color-gray" : ""} `}
+                  className={`${area.available === 0 ? "color-gray" : ""} `}
                   sx={{
                     m: 0,
                     "& .MuiSvgIcon-root": {
                       fontSize: 20,
-                      color: areaAvailable() === "text-color-red" ? "gray" : "yellow",
+                      color: areaAvailable() === "text-color-red" ? "gray" : "yellow" && area.available === 0 ? "gray" : "yellow",
+
                       "&.Mui-checked": {
                         color: "yellow",
                       },
@@ -191,12 +189,10 @@ export function AreaListItem(props) {
           </RadioGroup>
         </div>
 
-        <div className="mt-auto flex justify-between ">
-          <p className={`self-center duration-200 ${areaAvailable() === "text-color-red" ? "text-color-gray" : ""}`}>
-            spots left
-          </p>
+        <div className={`mt-auto  flex justify-between ${area.available === 0 ? "text-color-gray" : ""}`}>
+          <p className={`areaAvailable()  self-center duration-200 ${areaAvailable() === "text-color-red" ? "text-color-gray" : ""} ${area.available === 0 ? "text-color-gray" : ""} `}>spots left</p>
           <div className="self-center font-sans">
-            <span className={"pr-2.5 text-2xl font-bold " + areaAvailable()}>{area.available}</span>
+            <span className={` ${areaAvailable()} pr-2.5 text-2xl  font-bold ${area.available === 0 || "text-color-red" ? "text-color-gray" : ""}`}>{area.available}</span>
           </div>
         </div>
       </section>
