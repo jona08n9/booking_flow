@@ -22,7 +22,8 @@ export function ChooseArea() {
       <h2 className="mb-5 mt-16 text-center">Choose area</h2>
 
       {/* if areas is empty, then don't show anything, else show AreaList component.  */}
-      {areas === "" ? <p></p> : <AreaList areas={areas} />}
+      <CircularProgress />
+      {/* {areas === "" ? <p></p> : <AreaList areas={areas} />} */}
     </>
   );
 }
