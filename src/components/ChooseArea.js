@@ -23,7 +23,7 @@ export function ChooseArea() {
 
       {/* if areas is empty, then don't show anything, else show AreaList component.  */}
 
-      {areas === "" ? <CircularProgress /> : <AreaList areas={areas} />}
+      {areas === "" ? <CircularProgress className="grid place-content-center" /> : <AreaList areas={areas} />}
     </>
   );
 }
