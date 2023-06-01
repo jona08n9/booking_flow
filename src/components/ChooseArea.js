@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { AreaList } from "./AreaList";
 import config from "../../config";
+import CircularProgress from "@mui/material/CircularProgress";
 
 export function ChooseArea() {
   const apiUrl = config[process.env.NODE_ENV].apiUrl;
@@ -21,7 +22,7 @@ export function ChooseArea() {
       <h2 className="mb-5 mt-16 text-center">Choose area</h2>
 
       {/* if areas is empty, then don't show anything, else show AreaList component.  */}
-      {areas === "" ? <p></p> : <AreaList areas={areas} />}
+      {areas === <CircularProgress /> ? <p></p> : <AreaList areas={areas} />}
     </>
   );
 }
