@@ -158,7 +158,8 @@ function Contact(props) {
   const [bookingDetails, setBookingDetails] = useContext(BookingInformation);
   const [currentAccordionIndex, setCurrentAccordionIndex] = useState(0);
   const [formArray, setFormArray] = useState([]);
-  const [phoneNumber, setPhoneNumber] = useState([]);
+  const [phoneNumber, setPhoneNumber] = useState("NO_NUMBER");
+  const [signUpControl, setSignUpControl] = useState(false);
   const router = useRouter();
 
   // console.log("booking details", bookingDetails.reservation_id);
@@ -170,7 +171,13 @@ function Contact(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    createUser(event);
+    if (signUpControl === false) {
+      createUser(event);
+      setSignUpControl(true);
+    }
+    if (phoneNumber === "NO_NUMBER") {
+      setPhoneNumber(event.target.phoneNumber.value.replace(/\s/g, ""));
+    }
     // console.log(event.target.phoneNumber.value.replace(/\s/g, ""));
     const formData = {
       firstName: event.target.firstName.value,
@@ -181,34 +188,36 @@ function Contact(props) {
       zipCode: event.target.zipCode.value,
     };
 
-    const phoneDetails = {
-      phone: event.target.phoneNumber.value.replace(/\s/g, ""),
-    };
-
     async function createUser(e) {
-      try {
-        const { data, error } = await supabase.auth.signUp({
-          // email: e.target.email.value,
-          phone: e.target.phoneNumber.value.replace(/\s/g, "").toString(),
-          password: "Abcde2720+-",
-          // options: {
-          //   data: {
-          //     phone: e.target.phoneNumber.value.replace(/\s/g, "").toString(),
-          //   },
-          // },
-        });
-        if (error) throw error;
-        alert("Måske?");
-      } catch (error) {
-        alert(error);
+      if (signUpControl === false) {
+        try {
+          const { data, error } = await supabase.auth.signUp({
+            // email: e.target.email.value,
+            phone: e.target.phoneNumber.value.replace(/\s/g, "").toString(),
+            password: "Abcde2720+-",
+            // options: {
+            //   data: {
+            //     phone: e.target.phoneNumber.value.replace(/\s/g, "").toString(),
+            //   },
+            // },
+          });
+          setSignUpControl(true);
+          if (error) throw error;
+          console.log(data);
+          setSignUpControl(true);
+        } catch (error) {
+          console.log(error);
+          setSignUpControl(true);
+        }
       }
     }
-
-    setFormArray((prevFormArray) => [...prevFormArray, formData, phoneDetails]);
+    setFormArray((prevFormArray) => [...prevFormArray, formData]);
     handleNextTicket();
     console.log("Form Data:", JSON.stringify(formData));
     console.log(formData); // Log the stringified form data
-    console.log(formArray.length);
+    console.log("formArray.length", formArray.length);
+    console.log("bookingDetails.ticketAmount", bookingDetails.ticketAmount);
+    console.log(signUpControl);
     // event.target.reset()
   };
 
@@ -223,6 +232,7 @@ function Contact(props) {
       contactInformation: {
         ...formArray,
       },
+      phone: phoneNumber,
     }));
     goToPayment();
     console.log("eyy");
@@ -254,7 +264,7 @@ function Contact(props) {
           </div>
         ) : (
           <div className="mt-10 flex justify-center">
-            <Button disabled={true} className=" mb-10 h-10 gap-5 place-self-center rounded-none border-2 border-solid border-color-gray bg-color-gray px-6 font-sans font-semibold text-color-black hover:bg-color-yellow hover:text-color-black ">
+            <Button disabled={true} onClick={updateBookingDetails} className=" mb-10 h-10 gap-5 place-self-center rounded-none border-2 border-solid border-color-gray bg-color-gray px-6 font-sans font-semibold text-color-black hover:bg-color-yellow hover:text-color-black ">
               <span className="pt-1">Go to payment</span>
             </Button>
           </div>
