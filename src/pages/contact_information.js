@@ -14,6 +14,15 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import PriceDrawer from "@/components/PriceDrawer";
 import { useRouter } from "next/router";
 import CountdownTimer from "./CountdownTimer";
+import { createClient } from "@supabase/supabase-js";
+
+const supabase = createClient("https://zwhuiiextumxbglllmlk.supabase.co/", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp3aHVpaWV4dHVteGJnbGxsbWxrIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODY3NDQzMjEsImV4cCI6MjAwMjMyMDMyMX0.6bVHqcHAjW1yayID2eKPB5jiFxbx4Pk5bQ2Dvb-PXLo", {
+  auth: {
+    autoRefreshToken: false,
+    persistSession: false,
+    detectSessionInUrl: false,
+  },
+});
 
 const ValidationTextFieldPhone = styled(TextField)(({ inputValue }) => ({
   "& label.Mui-focused": {
@@ -149,17 +158,20 @@ function Contact(props) {
   const [bookingDetails, setBookingDetails] = useContext(BookingInformation);
   const [currentAccordionIndex, setCurrentAccordionIndex] = useState(0);
   const [formArray, setFormArray] = useState([]);
+  const [phoneNumber, setPhoneNumber] = useState([]);
   const router = useRouter();
 
-  console.log("number", bookingDetails.ticketAmount);
+  // console.log("booking details", bookingDetails.reservation_id);
 
   const handleNextTicket = () => {
     setCurrentAccordionIndex(currentAccordionIndex + 1);
-    console.log(formArray);
+    // console.log(formArray);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    createUser(event);
+    // console.log(event.target.phoneNumber.value.replace(/\s/g, ""));
     const formData = {
       firstName: event.target.firstName.value,
       lastName: event.target.lastName.value,
@@ -169,7 +181,30 @@ function Contact(props) {
       zipCode: event.target.zipCode.value,
     };
 
-    setFormArray((prevFormArray) => [...prevFormArray, formData]);
+    const phoneDetails = {
+      phone: event.target.phoneNumber.value.replace(/\s/g, ""),
+    };
+
+    async function createUser(e) {
+      try {
+        const { data, error } = await supabase.auth.signUp({
+          // email: e.target.email.value,
+          phone: e.target.phoneNumber.value.replace(/\s/g, "").toString(),
+          password: "Abcde2720+-",
+          // options: {
+          //   data: {
+          //     phone: e.target.phoneNumber.value.replace(/\s/g, "").toString(),
+          //   },
+          // },
+        });
+        if (error) throw error;
+        alert("Måske?");
+      } catch (error) {
+        alert(error);
+      }
+    }
+
+    setFormArray((prevFormArray) => [...prevFormArray, formData, phoneDetails]);
     handleNextTicket();
     console.log("Form Data:", JSON.stringify(formData));
     console.log(formData); // Log the stringified form data
@@ -179,6 +214,7 @@ function Contact(props) {
 
   useEffect(() => {
     console.log(formArray);
+    console.log(bookingDetails);
   }, [formArray]);
 
   function updateBookingDetails() {
@@ -189,7 +225,7 @@ function Contact(props) {
       },
     }));
     goToPayment();
-    ``;
+    console.log("eyy");
   }
 
   function goToPayment() {
@@ -201,17 +237,7 @@ function Contact(props) {
       <CountdownTimer />
       <div className="mx-1 mb-8 mt-48 max-w-full rounded-sm bg-gradient-to-b from-color-opacity-20 to-color-opacity-10 px-8 pt-8 md:mx-auto md:max-w-2xl">
         {[...Array(bookingDetails.ticketAmount)].map((_, index) => (
-          <ContactForm
-            bookingDetails={bookingDetails}
-            updateBookingDetails={updateBookingDetails}
-            numOfTickets={index + 1}
-            key={index}
-            fromIndex={index}
-            isExpanded={index === currentAccordionIndex}
-            onNextTicket={handleNextTicket}
-            handleSubmit={handleSubmit}
-            onClickAccordion={() => setCurrentAccordionIndex(index)}
-          />
+          <ContactForm bookingDetails={bookingDetails} updateBookingDetails={updateBookingDetails} numOfTickets={index + 1} key={index} fromIndex={index} isExpanded={index === currentAccordionIndex} onNextTicket={handleNextTicket} handleSubmit={handleSubmit} onClickAccordion={() => setCurrentAccordionIndex(index)} />
         ))}
         {bookingDetails.ticketAmount === formArray.length ? (
           <div className="mt-10 flex justify-center">
@@ -228,10 +254,7 @@ function Contact(props) {
           </div>
         ) : (
           <div className="mt-10 flex justify-center">
-            <Button
-              disabled={true}
-              className=" mb-10 h-10 gap-5 place-self-center rounded-none border-2 border-solid border-color-gray bg-color-gray px-6 font-sans font-semibold text-color-black hover:bg-color-yellow hover:text-color-black "
-            >
+            <Button disabled={true} className=" mb-10 h-10 gap-5 place-self-center rounded-none border-2 border-solid border-color-gray bg-color-gray px-6 font-sans font-semibold text-color-black hover:bg-color-yellow hover:text-color-black ">
               <span className="pt-1">Go to payment</span>
             </Button>
           </div>
@@ -278,100 +301,18 @@ function ContactForm(props) {
   const inputValueZip = zipCode.length;
 
   return (
-    <form
-      className="mb-2"
-      onSubmit={props.handleSubmit}
-    >
-      <Accordion
-        className="bg-color-opacity-20"
-        expanded={props.isExpanded}
-      >
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon className="fill-color-white" />}
-          aria-controls="panel1d-content"
-          id="panel1d-header"
-          onClick={props.onClickAccordion}
-        >
+    <form className="mb-2" onSubmit={props.handleSubmit}>
+      <Accordion className="bg-color-opacity-20" expanded={props.isExpanded}>
+        <AccordionSummary expandIcon={<ExpandMoreIcon className="fill-color-white" />} aria-controls="panel1d-content" id="panel1d-header" onClick={props.onClickAccordion}>
           <Typography className="font-bold text-color-white">Ticket #{props.numOfTickets} </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <ValidationTextField
-            className="text-color-white"
-            inputProps={{ inputMode: "text" }}
-            fullWidth
-            type="text"
-            label="First name"
-            required
-            variant="outlined"
-            defaultValue=""
-            id="validation-outlined-input"
-            name="firstName"
-          />
-          <ValidationTextField
-            inputProps={{ inputMode: "text" }}
-            fullWidth
-            className="mt-4"
-            type="text"
-            label="Last name"
-            required
-            variant="outlined"
-            defaultValue=""
-            id="validation-outlined-input"
-            name="lastName"
-          />
-          <ValidationTextFieldPhone
-            inputProps={{ inputMode: "tel" }}
-            className="mt-4"
-            onChange={handleChange}
-            id="formatted-text-mask-input"
-            InputProps={{ inputComponent: TextMaskCustom }}
-            fullWidth
-            label="Phone number"
-            required
-            variant="outlined"
-            value={values.phoneNumber}
-            inputValue={inputValue}
-            name="phoneNumber"
-          />
-          <ValidationTextField
-            inputProps={{ inputMode: "email" }}
-            type="email"
-            fullWidth
-            className="mt-4"
-            label="Email"
-            required
-            variant="outlined"
-            defaultValue=""
-            id="validation-outlined-input"
-            name="email"
-          />
-          <ValidationTextField
-            inputProps={{ inputMode: "text" }}
-            fullWidth
-            className="mt-4"
-            type="text"
-            label="Street and house number"
-            required
-            variant="outlined"
-            defaultValue=""
-            id="validation-outlined-input"
-            name="streetAdress"
-          />
-          <ValidationTextFieldZip
-            inputProps={{ inputMode: "decimal" }}
-            type="number"
-            fullWidth
-            className="mt-4"
-            label="Zip code"
-            required
-            variant="outlined"
-            value={zipCode}
-            defaultValue=""
-            id="validation-outlined-input"
-            onChange={handleChangeZip}
-            inputValueZip={inputValueZip}
-            name="zipCode"
-          />
+          <ValidationTextField className="text-color-white" inputProps={{ inputMode: "text" }} fullWidth type="text" label="First name" required variant="outlined" defaultValue="" id="validation-outlined-input" name="firstName" />
+          <ValidationTextField inputProps={{ inputMode: "text" }} fullWidth className="mt-4" type="text" label="Last name" required variant="outlined" defaultValue="" id="validation-outlined-input" name="lastName" />
+          <ValidationTextFieldPhone inputProps={{ inputMode: "tel" }} className="mt-4" onChange={handleChange} id="formatted-text-mask-input" InputProps={{ inputComponent: TextMaskCustom }} fullWidth label="Phone number" required variant="outlined" value={values.phoneNumber} inputValue={inputValue} name="phoneNumber" />
+          <ValidationTextField inputProps={{ inputMode: "email" }} type="email" fullWidth className="mt-4" label="Email" required variant="outlined" defaultValue="" id="validation-outlined-input" name="email" />
+          <ValidationTextField inputProps={{ inputMode: "text" }} fullWidth className="mt-4" type="text" label="Street and house number" required variant="outlined" defaultValue="" id="validation-outlined-input" name="streetAdress" />
+          <ValidationTextFieldZip inputProps={{ inputMode: "decimal" }} type="number" fullWidth className="mt-4" label="Zip code" required variant="outlined" value={zipCode} defaultValue="" id="validation-outlined-input" onChange={handleChangeZip} inputValueZip={inputValueZip} name="zipCode" />
         </AccordionDetails>
         <div className="mt-10 flex justify-center">
           <Button

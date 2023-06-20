@@ -1,7 +1,5 @@
 export default async function handler(req, res) {
-  //   res.status(200).json(req.body);
-
-  const response = await fetch("https://sehdatpndanlumnavgbc.supabase.co/rest/v1/foofest_festival", {
+  const response = await fetch("https://zwhuiiextumxbglllmlk.supabase.co/rest/v1/jonas_foofest", {
     method: "POST",
     headers: {
       "content-type": "application/json",
