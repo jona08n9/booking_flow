@@ -195,29 +195,24 @@ function Contact(props) {
             // email: e.target.email.value,
             phone: e.target.phoneNumber.value.replace(/\s/g, "").toString(),
             password: "Abcde2720+-",
-            // options: {
-            //   data: {
-            //     phone: e.target.phoneNumber.value.replace(/\s/g, "").toString(),
-            //   },
-            // },
           });
           setSignUpControl(true);
           if (error) throw error;
-          console.log(data);
+          // console.log(data);
           setSignUpControl(true);
         } catch (error) {
-          console.log(error);
+          // console.log(error);
           setSignUpControl(true);
         }
       }
     }
     setFormArray((prevFormArray) => [...prevFormArray, formData]);
     handleNextTicket();
-    console.log("Form Data:", JSON.stringify(formData));
-    console.log(formData); // Log the stringified form data
-    console.log("formArray.length", formArray.length);
-    console.log("bookingDetails.ticketAmount", bookingDetails.ticketAmount);
-    console.log(signUpControl);
+    // console.log("Form Data:", JSON.stringify(formData));
+    // console.log(formData); // Log the stringified form data
+    // console.log("formArray.length", formArray.length);
+    // console.log("bookingDetails.ticketAmount", bookingDetails.ticketAmount);
+    // console.log(signUpControl);
     // event.target.reset()
   };
 
@@ -235,7 +230,6 @@ function Contact(props) {
       phone: phoneNumber,
     }));
     goToPayment();
-    console.log("eyy");
   }
 
   function goToPayment() {
